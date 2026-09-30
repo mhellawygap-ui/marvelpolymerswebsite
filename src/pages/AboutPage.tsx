@@ -115,7 +115,7 @@ export default function AboutPage() {
               <a className="btn primary" href="#contact" onClick={(e) => { e.preventDefault(); navigate("contact"); }}>
                 Talk to Marvel <span className="arrow">↗</span>
               </a>
-              <a className="btn ghost" href="#products" onClick={(e) => { e.preventDefault(); navigate("home"); }}>
+              <a className="btn ghost" href="#/products" onClick={(e) => { e.preventDefault(); navigate("products"); }}>
                 Explore Products
               </a>
             </div>

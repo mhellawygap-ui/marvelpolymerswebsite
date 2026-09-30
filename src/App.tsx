@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavCtx, type Page } from "@/NavContext";
+import { NavCtx, type Page, parseHash, hashFor } from "@/NavContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
@@ -13,26 +13,46 @@ import ResourcesSection from "@/components/ResourcesSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
+import ProductsPage from "@/pages/ProductsPage";
+
+const TITLES: Record<Page, string> = {
+  home: "Marvel Polymers · Industrial Polymer Solutions",
+  about: "About — Marvel Polymers",
+  contact: "Contact — Marvel Polymers",
+  products: "Products — Marvel Polymers",
+};
 
 export default function App() {
-  const [page, setPage] = useState<Page>("home");
+  const [route, setRoute] = useState(() => parseHash(window.location.hash));
+  const { page, anchor } = route;
 
-  const navigate = (p: Page) => {
-    setPage(p);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  useEffect(() => {
+    const onHash = () => setRoute(parseHash(window.location.hash));
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  const navigate = (p: Page, a = "") => {
+    const next = hashFor(p, a);
+    if (window.location.hash === next) {
+      scrollToAnchor(a);
+    } else {
+      window.location.hash = next;
+    }
   };
 
   useEffect(() => {
-    document.title =
-      page === "about"
-        ? "About — Marvel Polymers"
-        : page === "contact"
-        ? "Contact — Marvel Polymers"
-        : "Marvel Polymers · Industrial Polymer Solutions";
+    document.title = TITLES[page];
   }, [page]);
 
+  // After the page renders, scroll to the requested section (or the top).
+  useEffect(() => {
+    const id = requestAnimationFrame(() => scrollToAnchor(anchor));
+    return () => cancelAnimationFrame(id);
+  }, [page, anchor]);
+
   return (
-    <NavCtx.Provider value={{ page, navigate }}>
+    <NavCtx.Provider value={{ page, anchor, navigate }}>
       <Header />
       {page === "home" && (
         <main>
@@ -49,7 +69,14 @@ export default function App() {
       )}
       {page === "about" && <AboutPage />}
       {page === "contact" && <ContactPage />}
+      {page === "products" && <ProductsPage />}
       <Footer />
     </NavCtx.Provider>
   );
+}
+
+function scrollToAnchor(anchor: string) {
+  const el = anchor ? document.getElementById(anchor) : null;
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  else window.scrollTo({ top: 0, behavior: "smooth" });
 }

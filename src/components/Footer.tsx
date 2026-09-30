@@ -11,17 +11,18 @@ export default function Footer() {
           </div>
           <div>
             <h4>Products</h4>
-            <a href="#products">Polyethylene</a>
-            <a href="#products">Polypropylene</a>
-            <a href="#products">Pipeline Coatings</a>
-            <a href="#products">Engineering Thermoplastics</a>
+            <a href="#/products/polyethylene">Polyethylene</a>
+            <a href="#/products/polypropylene">Polypropylene</a>
+            <a href="#/products/pipeline-coatings">Pipeline Coatings</a>
+            <a href="#/products/engineering-thermoplastics">Engineering Thermoplastics</a>
           </div>
           <div>
             <h4>Explore</h4>
             <a href="#industries">Industries</a>
-            <a href="#services">Services</a>
+            <a href="#/products">All Products</a>
             <a href="#resources">Resources</a>
-            <a href="#about">About</a>
+            <a href="#/about">About</a>
+            <a href="#/contact">Contact</a>
           </div>
           <div>
             <h4>Contact</h4>

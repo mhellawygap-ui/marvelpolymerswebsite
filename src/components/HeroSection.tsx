@@ -14,10 +14,10 @@ export default function HeroSection() {
             Application-led material selection, technical-commercial support and dependable polymer supply for infrastructure, mobility, manufacturing and industrial applications.
           </p>
           <div className="hero-actions">
-            <a className="btn primary" href="#contact">
+            <a className="btn primary" href="#/contact">
               Request a Material <span className="arrow">↗</span>
             </a>
-            <a className="btn ghost" href="#products">
+            <a className="btn ghost" href="#/products">
               Explore Products <span className="arrow">→</span>
             </a>
           </div>
