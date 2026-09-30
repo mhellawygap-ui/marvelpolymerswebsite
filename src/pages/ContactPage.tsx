@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { useNav } from "@/NavContext";
+import { useFormSubmit } from "@/lib/useFormSubmit";
 
 const enquiryTypes = [
   "Product / Material Enquiry",
@@ -32,12 +32,7 @@ const contactDetails = [
 
 export default function ContactPage() {
   const { navigate } = useNav();
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  const { sending, error, onSubmit } = useFormSubmit("contact");
 
   return (
     <main>
@@ -108,61 +103,36 @@ export default function ContactPage() {
 
           {/* Right: form */}
           <div className="contact-form">
-            {submitted ? (
-              <div style={{ textAlign: "center", padding: "40px 20px" }}>
-                <div style={{
-                  width: 64, height: 64, borderRadius: "50%",
-                  background: "#f0fdf4", border: "2px solid #86efac",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  margin: "0 auto 20px",
-                }}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                </div>
-                <h3 style={{ color: "var(--navy)", marginBottom: 10 }}>Enquiry received</h3>
-                <p style={{ color: "var(--muted)", marginBottom: 24 }}>
-                  Thank you. A member of our team will follow up on your material enquiry shortly.
-                </p>
-                <button
-                  className="btn ghost"
-                  onClick={() => navigate("home")}
-                  style={{ fontSize: ".9rem" }}
-                >
-                  Back to Home
-                </button>
-              </div>
-            ) : (
-              <>
+            <>
                 <div className="eyebrow">Send an Enquiry</div>
                 <h2 style={{ color: "var(--navy)", fontSize: "1.9rem", margin: "8px 0 24px" }}>
                   Tell us what you need.
                 </h2>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={onSubmit}>
                   <div className="form-grid">
                     <div className="form-field">
                       <label>Full Name</label>
-                      <input required placeholder="Your name" />
+                      <input name="name" required placeholder="Your name" autoComplete="name" />
                     </div>
                     <div className="form-field">
                       <label>Company</label>
-                      <input required placeholder="Company name" />
+                      <input name="company" required placeholder="Company name" autoComplete="organization" />
                     </div>
                     <div className="form-field">
                       <label>Country</label>
-                      <input placeholder="Country" />
+                      <input name="country" placeholder="Country" autoComplete="country-name" />
                     </div>
                     <div className="form-field">
                       <label>Business Email</label>
-                      <input required type="email" placeholder="name@company.com" />
+                      <input name="email" required type="email" placeholder="name@company.com" autoComplete="email" />
                     </div>
                     <div className="form-field">
                       <label>Phone / WhatsApp</label>
-                      <input placeholder="+20 ..." />
+                      <input name="phone" type="tel" placeholder="+20 ..." autoComplete="tel" />
                     </div>
                     <div className="form-field">
                       <label>Enquiry Type</label>
-                      <select>
+                      <select name="enquiry_type">
                         {enquiryTypes.map((t) => (
                           <option key={t}>{t}</option>
                         ))}
@@ -170,11 +140,12 @@ export default function ContactPage() {
                     </div>
                     <div className="form-field full">
                       <label>Message / Material Requirement</label>
-                      <textarea placeholder="Share the material, grade, application, processing method, quantity or delivery destination if known." />
+                      <textarea name="message" placeholder="Share the material, grade, application, processing method, quantity or delivery destination if known." />
                     </div>
                     <div className="form-field full" style={{ alignItems: "flex-start" }}>
-                      <button className="btn primary" type="submit">
-                        Send Enquiry <span className="arrow">↗</span>
+                      {error && <p className="rq-error" role="alert">{error}</p>}
+                      <button className="btn primary" type="submit" disabled={sending}>
+                        {sending ? "Sending…" : <>Send Enquiry <span className="arrow">↗</span></>}
                       </button>
                     </div>
                   </div>
@@ -186,8 +157,7 @@ export default function ContactPage() {
                     commercial options as quickly as possible.
                   </p>
                 </div>
-              </>
-            )}
+            </>
           </div>
         </div>
       </section>

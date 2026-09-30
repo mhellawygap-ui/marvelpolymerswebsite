@@ -15,6 +15,10 @@ import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
 import ProductsPage from "@/pages/ProductsPage";
 import FamilyPage from "@/pages/FamilyPage";
+import IndustriesPage from "@/pages/IndustriesPage";
+import ResourcesPage from "@/pages/ResourcesPage";
+import QuotePage from "@/pages/QuotePage";
+import ThankYouPage from "@/pages/ThankYouPage";
 import { families } from "@/data/products";
 
 const TITLES: Record<Page, string> = {
@@ -23,6 +27,10 @@ const TITLES: Record<Page, string> = {
   contact: "Contact — Marvel Polymers",
   products: "Products — Marvel Polymers",
   family: "Products — Marvel Polymers",
+  industries: "Industries — Marvel Polymers",
+  resources: "Resources — Marvel Polymers",
+  quote: "Request a Quote — Marvel Polymers",
+  thanks: "Thank You — Marvel Polymers",
 };
 
 export default function App() {
@@ -75,6 +83,10 @@ export default function App() {
       {page === "contact" && <ContactPage />}
       {page === "products" && <ProductsPage />}
       {page === "family" && <FamilyPage key={anchor} />}
+      {page === "industries" && <IndustriesPage />}
+      {page === "resources" && <ResourcesPage />}
+      {page === "quote" && <QuotePage key={anchor} />}
+      {page === "thanks" && <ThankYouPage />}
       <Footer />
     </NavCtx.Provider>
   );

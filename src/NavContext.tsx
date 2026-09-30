@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export type Page = "home" | "about" | "contact" | "products" | "family";
+export type Page = "home" | "about" | "contact" | "products" | "family" | "industries" | "resources" | "quote" | "thanks";
 
 interface NavCtxType {
   page: Page;
@@ -12,7 +12,7 @@ interface NavCtxType {
 export const NavCtx = createContext<NavCtxType>({ page: "home", anchor: "", navigate: () => {} });
 export const useNav = () => useContext(NavCtx);
 
-const PAGES: Page[] = ["home", "about", "contact", "products", "family"];
+const PAGES: Page[] = ["home", "about", "contact", "products", "family", "industries", "resources", "quote", "thanks"];
 
 /**
  * Hash routes, so every page has a shareable link and works on static hosting:
@@ -21,6 +21,10 @@ const PAGES: Page[] = ["home", "about", "contact", "products", "family"];
  *   #/products    → products (All tab)
  *   #/products/filter/polyethylene → products, filtered to one family tab
  *   #/products/polyethylene → that family's detail page
+ *   #/industries/automotive → industries page, scrolled to that industry
+ *   #/resources/guides      → resources page, scrolled to that section
+ *   #/quote/polyethylene    → quote form, pre-filled with that family
+ *   #/thanks/quote          → thank-you page for that form
  *   #industries   → home, scrolled to that section (plain in-page anchors keep working)
  */
 export function parseHash(hash: string): { page: Page; anchor: string } {

@@ -53,14 +53,14 @@ export default function Header() {
                 ))}
               </div>
             </div>
-            <a {...link("home", "industries")}>Industries</a>
-            <a {...link("home", "resources")}>Resources</a>
+            <a {...link("industries")}>Industries</a>
+            <a {...link("resources")}>Resources</a>
             <a {...link("about")}>About</a>
             <a {...link("contact")}>Contact</a>
           </nav>
 
-          <a className="btn primary" {...link("contact")}>
-            Request a Material <span className="arrow">↗</span>
+          <a className="btn primary" {...link("quote")}>
+            Request a Quote <span className="arrow">↗</span>
           </a>
           <button
             className="menu-toggle"
@@ -81,8 +81,8 @@ export default function Header() {
             }}>
               {[
                 { label: "Products", page: "products" as Page, anchor: "" },
-                { label: "Industries", page: "home" as Page, anchor: "industries" },
-                { label: "Resources", page: "home" as Page, anchor: "resources" },
+                { label: "Industries", page: "industries" as Page, anchor: "" },
+                { label: "Resources", page: "resources" as Page, anchor: "" },
                 { label: "About", page: "about" as Page, anchor: "" },
                 { label: "Contact", page: "contact" as Page, anchor: "" },
               ].map((item, i, arr) => (
@@ -100,11 +100,11 @@ export default function Header() {
                 </a>
               ))}
               <a
-                {...link("contact")}
+                {...link("quote")}
                 className="btn primary"
                 style={{ marginTop: 14, width: "100%", justifyContent: "center" }}
               >
-                Request a Material <span className="arrow">↗</span>
+                Request a Quote <span className="arrow">↗</span>
               </a>
             </div>
           </div>

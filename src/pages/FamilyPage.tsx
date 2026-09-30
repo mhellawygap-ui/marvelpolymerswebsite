@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { useNav, hashFor, type Page } from "@/NavContext";
 import { families } from "@/data/products";
 import { familyDetails, type Grade } from "@/data/familyDetails";
+import { useFormSubmit } from "@/lib/useFormSubmit";
 
 const EMAIL = "operations@marvelpolymers.com";
 
@@ -227,27 +227,7 @@ function Masterbatch() {
 
 /* ── Enquiry form ──────────────────────────────────────────────────── */
 function QuoteSection({ familyName, resinTypes, applications }: { familyName: string; resinTypes: string[]; applications: string[] }) {
-  const [sent, setSent] = useState(false);
-
-  const submit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const d = new FormData(e.currentTarget);
-    const v = (k: string) => String(d.get(k) ?? "").trim();
-    const body = [
-      `Product family: ${familyName}`,
-      `Resin type: ${v("resin") || "Not sure"}`,
-      `Application: ${v("application") || "Not sure"}`,
-      `Quantity: ${v("quantity") || "-"}`,
-      `Delivery country: ${v("country") || "-"}`,
-      "",
-      v("message"),
-      "",
-      `${v("name")} · ${v("company")}`,
-      `${v("email")}${v("phone") ? ` · ${v("phone")}` : ""}`,
-    ].join("\n");
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Quote request — ${familyName}`)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
-  };
+  const { sending, error, onSubmit } = useFormSubmit("family");
 
   return (
     <section className="section fp-quote" id="quote">
@@ -267,15 +247,9 @@ function QuoteSection({ familyName, resinTypes, applications }: { familyName: st
           </div>
         </aside>
 
-        <form className="fp-form" onSubmit={submit}>
-          {sent ? (
-            <div className="fp-sent" role="status">
-              <strong>Your email app should now be open with the enquiry filled in.</strong>
-              <p>Press send there to reach our team. If nothing opened, email us at <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
-              <button type="button" className="btn ghost" onClick={() => setSent(false)}>Edit enquiry</button>
-            </div>
-          ) : (
-            <>
+        <form className="fp-form" onSubmit={onSubmit}>
+          <input type="hidden" name="product_family" value={familyName} />
+
               <div className="fp-form-grid">
                 <label className="fp-field"><span>Full name *</span><input name="name" required autoComplete="name" /></label>
                 <label className="fp-field"><span>Company *</span><input name="company" required autoComplete="organization" /></label>
@@ -299,9 +273,10 @@ function QuoteSection({ familyName, resinTypes, applications }: { familyName: st
                 <label className="fp-field"><span>Delivery country</span><input name="country" autoComplete="country-name" /></label>
                 <label className="fp-field full"><span>Message</span><textarea name="message" rows={4} placeholder="Grade, specification, current material or anything else we should know." /></label>
               </div>
-              <button className="btn primary fp-submit" type="submit">Send Enquiry <span className="arrow">↗</span></button>
-            </>
-          )}
+              {error && <p className="rq-error" role="alert">{error}</p>}
+              <button className="btn primary fp-submit" type="submit" disabled={sending}>
+                {sending ? "Sending…" : <>Send Enquiry <span className="arrow">↗</span></>}
+              </button>
         </form>
       </div>
     </section>

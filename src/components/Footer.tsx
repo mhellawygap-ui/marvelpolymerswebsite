@@ -18,10 +18,11 @@ export default function Footer() {
           </div>
           <div>
             <h4>Explore</h4>
-            <a href="#industries">Industries</a>
+            <a href="#/industries">Industries</a>
             <a href="#/products">All Products</a>
-            <a href="#resources">Resources</a>
+            <a href="#/resources">Resources</a>
             <a href="#/about">About</a>
+            <a href="#/quote">Request a Quote</a>
             <a href="#/contact">Contact</a>
           </div>
           <div>

@@ -57,8 +57,8 @@ export default function ResourcesSection() {
             </select>
             <a
               className="btn primary"
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); navigate("contact"); }}
+              href="#/resources/documents"
+              onClick={(e) => { e.preventDefault(); navigate("resources", "documents"); }}
             >
               Review TDS <span className="arrow">↗</span>
             </a>

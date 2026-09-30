@@ -214,8 +214,8 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="cta-actions">
-              <a className="btn primary" href="#contact" onClick={(e) => { e.preventDefault(); navigate("contact"); }}>
-                Request a Material <span className="arrow">↗</span>
+              <a className="btn primary" href="#/quote" onClick={(e) => { e.preventDefault(); navigate("quote"); }}>
+                Request a Quote <span className="arrow">↗</span>
               </a>
             </div>
           </div>
