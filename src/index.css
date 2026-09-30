@@ -456,7 +456,7 @@ button.pp-app, button.pp-proc, button.pp-tab, .pp-clear { font: inherit; cursor:
 .pp-assist .btn { flex-shrink: 0; }
 
 /* Family tabs */
-.pp-tabs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; margin-bottom: 18px; }
+.pp-tabs { display: flex; flex-wrap: wrap; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; margin-bottom: 18px; }
 .pp-tabs::-webkit-scrollbar { display: none; }
 .pp-tab { flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: #fff; color: var(--navy); border-radius: 999px; padding: 10px 16px; font-weight: 700; font-size: .86rem; transition: .18s; }
 .pp-tab:hover { border-color: var(--navy); }
@@ -578,6 +578,7 @@ button.pp-app, button.pp-proc, button.pp-tab, .pp-clear { font: inherit; cursor:
 }
 @media (max-width: 640px) {
   .pp-mosaic { grid-template-rows: 110px 110px 110px; gap: 8px; }
+  .pp-tabs { flex-wrap: nowrap; }
   .pp-tile .chip { font-size: .62rem; padding: 5px 8px; }
   .pp-nav { padding: 18px; border-radius: 22px; }
   .pp-filters, .pp-doc-row { grid-template-columns: 1fr; }
