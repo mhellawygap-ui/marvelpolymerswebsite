@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Marvel Polymers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+:root{--navy:#012a57;--burgundy:#890b16;--ink:#10233c;--muted:#607089;--line:#dfe6ee;--soft:#f6f8fb;--shadow:0 18px 60px rgba(1,42,87,.10);--radius:22px;--radius-sm:14px;--max:1220px}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,ui-sans-serif,system-ui,-apple-system,sans-serif;color:var(--ink);background:#fff;line-height:1.55}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button,input,select,textarea{font:inherit}
+h1{font-weight:700;font-size:4.5rem;line-height:1.0;letter-spacing:-.04em;margin:0}
+h2{font-weight:700;font-size:3rem;line-height:1.06;letter-spacing:-.03em;margin:0}
+h3{font-weight:600;font-size:1.875rem;line-height:1.18;margin:0}
+h4{font-weight:600;font-size:1.5rem;line-height:1.25;margin:0}
+p{font-size:1.0625rem;line-height:1.65;margin:0}
+.container{width:min(calc(100% - 40px),var(--max));margin:auto}
+.eyebrow{font-size:.875rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--burgundy)}
+.section{padding:92px 0}
+.section.alt{background:var(--soft)}
+.section-head{display:flex;justify-content:space-between;gap:32px;align-items:end;margin-bottom:38px}
+.section-head h2{margin:.35rem 0 0;color:var(--navy)}
+.section-head p{max-width:560px;margin:0;color:var(--muted);font-size:1.05rem}
+.btn{display:inline-flex;align-items:center;gap:10px;justify-content:center;border-radius:999px;padding:13px 24px;font-weight:700;font-size:1rem;border:1px solid transparent;transition:.22s ease;cursor:pointer;text-decoration:none}
+.btn.primary{background:var(--burgundy);color:#fff}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(137,11,22,.24)}
+.btn.ghost{border-color:#cfd8e3;background:#fff;color:var(--navy)}
+.btn.ghost:hover{border-color:var(--navy);transform:translateY(-2px)}
+.arrow{font-size:1.1rem}
+.topbar{background:var(--navy);color:#fff;font-size:.78rem}
+.topbar .container{display:flex;justify-content:space-between;gap:20px;padding:8px 0}
+.topbar span{opacity:.84}
+.header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(1,42,87,.08)}
+.nav{height:78px;display:flex;align-items:center;gap:28px}
+.links{display:flex;align-items:center;gap:25px;margin-left:auto}
+.links a{font-size:.91rem;font-weight:700;color:#31435b}
+.links a:hover{color:var(--burgundy)}
+.nav .btn{margin-left:8px}
+.mega-wrap{position:relative}
+.mega-wrap:hover .mega-panel{display:grid}
+.mega-panel{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 28px 28px;grid-template-columns:repeat(2,1fr);gap:4px;min-width:560px;z-index:200}
+.mega-item{display:flex;gap:14px;align-items:flex-start;padding:12px 14px;border-radius:12px;transition:background .15s}
+.mega-item:hover{background:var(--soft)}
+.mega-num{font-size:.7rem;font-weight:900;color:var(--burgundy);padding-top:2px;flex-shrink:0}
+.mega-name{font-size:.86rem;font-weight:700;color:var(--navy);margin:0 0 3px}
+.mega-apps{font-size:.74rem;color:var(--muted);margin:0}
+.products-link{position:relative;display:flex;align-items:center;gap:4px}
+.products-link svg{transition:transform .2s}
+.mega-wrap:hover .products-link svg{transform:rotate(180deg)}
+.menu-toggle{display:none;margin-left:auto;border:0;background:transparent;font-size:1.5rem;color:var(--navy);cursor:pointer;padding:4px 8px}
+.mobile-menu{display:none;position:absolute;top:100%;left:20px;right:20px;padding:20px;background:#fff;flex-direction:column;align-items:flex-start;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);z-index:100}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;font-weight:700;color:var(--navy);padding:10px 0;border-bottom:1px solid var(--line);width:100%}
+.mobile-menu .btn{margin-top:14px;width:100%;justify-content:center}
+.header-relative{position:relative}
+footer{background:#071a30;color:#fff;padding:58px 0 24px}
+.footer-grid{display:grid;grid-template-columns:1.3fr repeat(3,.7fr);gap:42px}
+.footer-logo-text{font-size:1.3rem;font-weight:900;color:#fff;letter-spacing:-.02em}
+.footer-logo-text span{color:#c0392b}
+.footer-desc{max-width:330px;color:#9fb0c4;font-size:.9rem;margin-top:16px}
+footer h4{font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;color:#8fa2b8;margin:0 0 14px}
+footer a,footer p{display:block;color:#d6dfeb;font-size:.86rem;margin:8px 0}
+.copyright{margin-top:42px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;gap:20px;color:#8fa2b8;font-size:.78rem}
+/* Page hero */
+.page-hero{padding:78px 0 68px;background:linear-gradient(135deg,#fff 0%,#f6f8fb 100%)}
+.page-hero-grid{display:grid;grid-template-columns:1fr .9fr;gap:54px;align-items:center}
+.page-hero h1{color:var(--navy);margin:14px 0 22px}
+.page-hero p{font-size:1.08rem;color:var(--muted);max-width:650px;margin:0 0 28px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+.page-visual{border-radius:28px;overflow:hidden;min-height:430px}
+.page-visual img{width:100%;height:100%;object-fit:cover}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.story-grid h2{color:var(--navy);margin:8px 0 20px}
+.story-grid p{color:var(--muted);margin:0 0 16px}
+/* Principles */
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.principle{border:1px solid var(--line);border-radius:20px;padding:28px;background:#fff}
+.principle-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.principle-num{font-size:3.5rem;font-weight:900;color:var(--navy);opacity:.08;line-height:1;letter-spacing:-.05em}
+.principle-icon{color:var(--burgundy);flex-shrink:0;display:flex;align-items:center}
+.principle-icon svg{width:48px;height:48px}
+.principle h3{color:var(--navy);margin:0 0 8px;font-size:1.05rem}
+.principle p{color:var(--muted);font-size:.9rem;margin:0}
+/* CTA box */
+.cta{padding:86px 0}
+.cta-box{position:relative;border-radius:34px;overflow:hidden;background:var(--navy);color:#fff;padding:66px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.cta-box::after{content:"";position:absolute;width:420px;height:420px;border:85px solid rgba(255,255,255,.035);border-radius:50%;right:-150px;top:-130px;pointer-events:none}
+.cta-box h2{margin:10px 0 18px}
+.cta-box>div>p{max-width:560px;opacity:.75}
+.cta-actions{display:flex;justify-content:flex-end;position:relative;z-index:1}
+.cta-box .btn.primary{background:white;color:var(--navy);padding:16px 22px}
+/* Team */
+.team-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth;padding-bottom:8px}
+.team-track::-webkit-scrollbar{display:none}
+.team-card{scroll-snap-align:start;flex:0 0 calc(25% - 18px);text-align:center;padding:28px 16px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;transition:.25s}
+.team-card:hover{box-shadow:var(--shadow);border-color:transparent;transform:translateY(-4px)}
+.team-avatar-wrap{width:110px;height:110px;border-radius:50%;overflow:hidden;margin:0 auto 16px;border:3px solid var(--line)}
+.team-avatar{width:100%;height:100%;object-fit:cover;display:block}
+.team-name{font-weight:700;color:var(--navy);font-size:1rem;margin-bottom:4px}
+.team-title-role{font-size:.85rem;color:var(--muted)}
+.team-arrows{display:flex;gap:10px;justify-content:center;margin-top:28px}
+.team-arrow{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;color:var(--navy);cursor:pointer;transition:.22s}
+.team-arrow:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:34px;align-items:start}
+.contact-card{background:var(--navy);color:#fff;border-radius:28px;padding:34px}
+.contact-card h2{margin:8px 0 24px}
+.contact-item{padding:18px 0;border-top:1px solid rgba(255,255,255,.14)}
+.contact-item small{display:block;text-transform:uppercase;letter-spacing:.1em;opacity:.6;font-size:.68rem;margin-bottom:6px;font-weight:600}
+.contact-item a,.contact-item span{display:block;color:#e0e8f2;font-size:.93rem;line-height:1.5}
+.contact-form{border:1px solid var(--line);border-radius:28px;padding:32px;background:#fff;box-shadow:var(--shadow)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-field{display:flex;flex-direction:column;gap:7px}
+.form-field.full{grid-column:1/-1}
+.form-field label{font-size:.78rem;font-weight:600;color:var(--navy);letter-spacing:.02em}
+.form-field input,.form-field select,.form-field textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px 14px;outline:none;background:#fff;color:var(--ink);font-family:inherit;font-size:.93rem;transition:border-color .18s,box-shadow .18s}
+.form-field textarea{min-height:140px;resize:vertical}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(1,42,87,.08)}
+.location-box{margin-top:18px;border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--soft)}
+.success-box{text-align:center;padding:40px 20px}
+/* Responsive */
+@media(max-width:980px){
+  .links{display:none}.menu-toggle{display:block}.nav .btn{display:none}
+  .page-hero-grid,.story-grid,.contact-grid,.cta-box{grid-template-columns:1fr}
+  .principles{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .cta-actions{justify-content:flex-start}
+  .team-card{flex:0 0 calc(50% - 12px)}
+  .section-head{align-items:flex-start;flex-direction:column}
+}
+@media(max-width:640px){
+  .container{width:min(calc(100% - 28px),var(--max))}
+  .topbar{display:none}.nav{height:68px}
+  h1{font-size:2.625rem}h2{font-size:2rem}h3{font-size:1.5rem}
+  .section{padding:70px 0}
+  .principles,.form-grid{grid-template-columns:1fr}
+  .form-field.full{grid-column:auto}
+  .cta-box{padding:38px 28px}
+  .footer-grid{grid-template-columns:1fr}
+  .copyright{flex-direction:column}
+  .page-hero{padding:56px 0}
+  .page-visual{min-height:300px}
+  .team-card{flex:0 0 100%}
+}
+  </style>
+</head>
+<body>
+
+<div class="topbar"><div class="container"><span>Industrial polymer solutions • Alexandria, Egypt</span><span>operations@marvelpolymers.com &nbsp;|&nbsp; +20 120 522 2901</span></div></div>
+<div class="header-relative">
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="index.html" style="font-size:1.2rem;font-weight:900;color:var(--navy);letter-spacing:-.02em">MARVEL <span style="color:var(--burgundy)">POLYMERS</span></a>
+      <nav class="links">
+        <div class="mega-wrap">
+          <a href="index.html#products" class="products-link">Products<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <div class="mega-panel">
+            <a href="index.html#products" class="mega-item"><span class="mega-num">01</span><div><p class="mega-name">Polyethylene (PE) Solutions</p><p class="mega-apps">Pipe, Film, Blow Molding, Rotomolding</p></div></a>
+            <a href="index.html#products" class="mega-item"><span class="mega-num">02</span><div><p class="mega-name">Polypropylene (PP) &amp; Compounds</p><p class="mega-apps">Injection Molding, Extrusion, Raffia, Automotive</p></div></a>
+            <a href="index.html#products" class="mega-item"><span class="mega-num">03</span><div><p class="mega-name">Pipeline Coatings &amp; Adhesive Resins</p><p class="mega-apps">3LPE / 3LPP, Steel Pipe Anti-Corrosion</p></div></a>
+            <a href="index.html#products" class="mega-item"><span class="mega-num">04</span><div><p class="mega-name">Engineering Thermoplastics</p><p class="mega-apps">PA, PC, PBT — Reinforced &amp; Specialty Grades</p></div></a>
+            <a href="index.html#products" class="mega-item"><span class="mega-num">05</span><div><p class="mega-name">Thermoplastic Elastomers (TPE)</p><p class="mega-apps">Seals, Soft-Touch, Overmolding, TPV</p></div></a>
+            <a href="index.html#products" class="mega-item"><span class="mega-num">06</span><div><p class="mega-name">Masterbatches &amp; Performance Additives</p><p class="mega-apps">Color, UV Stabilizers, Flame Retardant</p></div></a>
+            <a href="index.html#products" class="mega-item"><span class="mega-num">07</span><div><p class="mega-name">Specialty &amp; Composite Materials</p><p class="mega-apps">Structural Polymers, Filled Compounds</p></div></a>
+          </div>
+        </div>
+        <a href="index.html#industries">Industries</a>
+        <a href="index.html#resources">Resources</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" style="color:var(--burgundy)">Contact</a>
+      </nav>
+      <a class="btn primary" href="contact.html">Request a Material <span class="arrow">↗</span></a>
+      <button class="menu-toggle" onclick="this.closest('.header-relative').querySelector('.mobile-menu').classList.toggle('open')">☰</button>
+    </div>
+    <div class="container" style="position:relative">
+      <div class="mobile-menu">
+        <a href="index.html#products">Products</a>
+        <a href="index.html#industries">Industries</a>
+        <a href="index.html#resources">Resources</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a class="btn primary" href="contact.html">Request a Material <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </header>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero" style="padding-bottom:52px">
+  <div class="container">
+    <p class="eyebrow">Contact Marvel</p>
+    <h1 style="color:var(--navy);margin:14px 0 22px;max-width:820px">Start a conversation about your material requirement.</h1>
+    <p style="max-width:680px">Contact Marvel for product enquiries, technical-commercial questions, supply requirements or partnership discussions.</p>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="section" style="padding-top:48px">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- LEFT: Contact Card -->
+      <div class="contact-card">
+        <p class="eyebrow" style="color:#fff;opacity:.65">Marvel Polymers</p>
+        <h2>Talk directly with our team.</h2>
+
+        <div class="contact-item">
+          <small>Email</small>
+          <a href="mailto:operations@marvelpolymers.com">operations@marvelpolymers.com</a>
+        </div>
+        <div class="contact-item">
+          <small>Phone / WhatsApp</small>
+          <a href="tel:+201205222901">+20 120 522 2901</a>
+        </div>
+        <div class="contact-item">
+          <small>Address</small>
+          <span style="white-space:pre-line">El-Nahda Industrial Zone,
+Alexandria, Egypt</span>
+        </div>
+        <div class="contact-item">
+          <small>Best for</small>
+          <span>Product enquiries · Technical documents · Commercial supply · Partnerships</span>
+        </div>
+
+        <div style="border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px 22px;margin-top:28px;background:rgba(255,255,255,.06)">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#e0e8f2;flex-shrink:0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span style="font-size:.82rem;color:#e0e8f2;font-weight:600">El-Nahda Industrial Zone, Alexandria</span>
+          </div>
+          <div style="height:120px;border-radius:10px;background:linear-gradient(135deg,var(--navy) 0%,var(--burgundy) 100%);display:grid;place-items:center">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Contact Form -->
+      <div class="contact-form">
+        <p class="eyebrow">Send an Enquiry</p>
+        <h2 style="color:var(--navy);font-size:1.9rem;margin:8px 0 24px">Tell us what you need.</h2>
+
+        <form id="contact-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="full-name">Full Name</label>
+              <input type="text" id="full-name" name="full_name" required placeholder="Your full name">
+            </div>
+            <div class="form-field">
+              <label for="company">Company</label>
+              <input type="text" id="company" name="company" required placeholder="Company or organisation">
+            </div>
+            <div class="form-field">
+              <label for="country">Country</label>
+              <input type="text" id="country" name="country" placeholder="Country">
+            </div>
+            <div class="form-field">
+              <label for="email">Business Email</label>
+              <input type="email" id="email" name="email" required placeholder="your@company.com">
+            </div>
+            <div class="form-field">
+              <label for="phone">Phone / WhatsApp</label>
+              <input type="text" id="phone" name="phone" placeholder="+1 234 567 890">
+            </div>
+            <div class="form-field">
+              <label for="enquiry-type">Enquiry Type</label>
+              <select id="enquiry-type" name="enquiry_type">
+                <option value="product">Product / Material Enquiry</option>
+                <option value="technical">Technical Documents</option>
+                <option value="commercial">Commercial / Supply</option>
+                <option value="partnership">Partnership</option>
+                <option value="general">General Enquiry</option>
+              </select>
+            </div>
+            <div class="form-field full">
+              <label for="message">Message / Material Requirement</label>
+              <textarea id="message" name="message" placeholder="Share the material, grade, application, processing method, quantity or delivery destination if known."></textarea>
+            </div>
+            <div class="form-field full">
+              <button type="submit" class="btn primary" style="width:100%">Send Enquiry <span class="arrow">↗</span></button>
+            </div>
+          </div>
+        </form>
+
+        <div id="success-box" class="success-box" style="display:none">
+          <div style="margin:0 auto 18px;width:64px;height:64px;border-radius:50%;background:#e8f5e9;display:grid;place-items:center">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#22c55e" opacity=".15"/><path d="M10 16.5l4.5 4.5 8-9" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="color:var(--navy);margin:0 0 12px">Enquiry received</h3>
+          <p style="color:var(--muted);max-width:380px;margin:0 auto 24px">Thank you. A member of our team will follow up on your material enquiry shortly.</p>
+          <a class="btn ghost" href="index.html">Back to Home</a>
+        </div>
+
+        <div class="location-box">
+          <strong style="font-size:.9rem;color:var(--navy);display:block;margin-bottom:6px">Have a specific grade or TDS?</strong>
+          <p style="font-size:.875rem;color:var(--muted)">Mention it in the message above. We will respond with relevant grade data and commercial options as quickly as possible.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo-text">MARVEL <span>POLYMERS</span></div>
+        <p class="footer-desc">Specialized polymer solutions for demanding industrial applications.</p>
+      </div>
+      <div><h4>Products</h4><a href="index.html#products">Polyethylene</a><a href="index.html#products">Polypropylene</a><a href="index.html#products">Pipeline Coatings</a><a href="index.html#products">Engineering Thermoplastics</a></div>
+      <div><h4>Explore</h4><a href="index.html#industries">Industries</a><a href="index.html#resources">Resources</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+      <div><h4>Contact</h4><p>operations@marvelpolymers.com</p><p>+20 120 522 2901</p><p>El-Nahda Industrial Zone,<br>Alexandria, Egypt</p></div>
+    </div>
+    <div class="copyright"><span>© 2026 Marvel Polymers. All rights reserved.</span><span>Privacy Policy &nbsp;•&nbsp; Terms &nbsp;•&nbsp; Cookie Preferences</span></div>
+  </div>
+</footer>
+
+<script>
+var form = document.getElementById('contact-form');
+var successBox = document.getElementById('success-box');
+if(form && successBox){
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    form.style.display='none';
+    successBox.style.display='block';
+  });
+}
+// Team track scroll (if present)
+function teamScroll(dir){var t=document.getElementById('team-track');if(t)t.scrollBy({left:dir*320,behavior:'smooth'});}
+</script>
+</body>
+</html>
