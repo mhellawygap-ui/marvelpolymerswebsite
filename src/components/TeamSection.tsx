@@ -47,7 +47,6 @@ export default function TeamSection() {
       <div className="container">
         <div className="section-head">
           <div>
-            <div className="eyebrow">Our Team</div>
             <h2>The people behind Marvel.</h2>
           </div>
           <p>A focused team of polymer specialists, commercial coordinators and logistics experts.</p>

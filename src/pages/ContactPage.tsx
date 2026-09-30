@@ -39,7 +39,6 @@ export default function ContactPage() {
       {/* Page Hero */}
       <section className="page-hero" style={{ paddingBottom: 52 }}>
         <div className="container">
-          <div className="eyebrow">Contact Marvel</div>
           <h1 style={{ maxWidth: 820, marginBottom: 16 }}>
             Start a conversation about your material requirement.
           </h1>
@@ -56,7 +55,6 @@ export default function ContactPage() {
 
           {/* Left: contact card */}
           <aside className="contact-card">
-            <div className="eyebrow" style={{ color: "#fff", opacity: .65 }}>Marvel Polymers</div>
             <h2>Talk directly with our team.</h2>
             {contactDetails.map((item) => (
               <div key={item.label} className="contact-item">
@@ -104,7 +102,6 @@ export default function ContactPage() {
           {/* Right: form */}
           <div className="contact-form">
             <>
-                <div className="eyebrow">Send an Enquiry</div>
                 <h2 style={{ color: "var(--navy)", fontSize: "1.9rem", margin: "8px 0 24px" }}>
                   Tell us what you need.
                 </h2>

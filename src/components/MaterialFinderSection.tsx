@@ -16,7 +16,6 @@ export default function MaterialFinderSection() {
       <div className="container">
         <div className="markets-grid">
           <div className="markets-copy">
-            <div className="eyebrow">Global Markets</div>
             <h2>Focused markets. Application-led growth.</h2>
             <div className="region-cards">
               {regions.map((r) => (

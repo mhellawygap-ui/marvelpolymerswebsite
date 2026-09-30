@@ -34,7 +34,7 @@ export default function Footer() {
         </div>
         <div className="copyright">
           <span>© 2026 Marvel Polymers. All rights reserved.</span>
-          <span>Privacy Policy &nbsp; • &nbsp; Terms &nbsp; • &nbsp; Cookie Preferences</span>
+          <span className="legal-links"><a href="#/privacy">Privacy Policy</a> &nbsp; • &nbsp; <a href="#/terms">Terms</a> &nbsp; • &nbsp; <a href="#/cookies">Cookie Preferences</a></span>
         </div>
       </div>
     </footer>

@@ -19,7 +19,6 @@ export default function ProductsPage() {
     }
   }, [active]);
 
-  const total = families.reduce((n, f) => n + productsByFamily[f.slug].length, 0);
 
   const link = (p: Page, a = "") => ({
     href: hashFor(p, a),
@@ -31,7 +30,6 @@ export default function ProductsPage() {
       {/* Intro */}
       <section className="pp-intro">
         <div className="container">
-          <div className="eyebrow">Products</div>
           <h1>Our products.</h1>
           <p>
             Polymer materials for infrastructure, packaging, automotive and industrial applications. Pick a
@@ -45,7 +43,7 @@ export default function ProductsPage() {
         <div className="container">
           <nav className="pp-tabs" aria-label="Product families" ref={tabsRef}>
             <a className={`pp-tab${active === ALL ? " active" : ""}`} aria-current={active === ALL ? "page" : undefined} {...link("products", ALL)}>
-              All <span className="pp-count">{total}</span>
+              All
             </a>
             {families.map((f) => (
               <a
@@ -54,7 +52,7 @@ export default function ProductsPage() {
                 aria-current={active === f.slug ? "page" : undefined}
                 {...link("products", f.slug)}
               >
-                {f.shortName} <span className="pp-count">{productsByFamily[f.slug].length}</span>
+                {f.shortName}
               </a>
             ))}
           </nav>
@@ -75,7 +73,6 @@ export default function ProductsPage() {
         <div className="container">
           <div className="cta-box">
             <div>
-              <div className="eyebrow" style={{ color: "#fff", opacity: .7 }}>Need help choosing?</div>
               <h2>Not sure which material fits?</h2>
               <p>
                 Tell us the application, how you process it or the grade you use today. We'll suggest the right
@@ -109,7 +106,6 @@ function Shelf({
       <header className="pp-shelf-head">
         <div className="pp-shelf-img">
           <img src={f.img} alt={f.name} loading="lazy" />
-          <span className="chip chip-lg">{f.chip}</span>
         </div>
         <div className="pp-shelf-info">
           <span className="pp-shelf-num">{f.num}</span>

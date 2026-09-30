@@ -29,7 +29,6 @@ export default function ResourcesSection() {
       <div className="container">
         <div className="tds-wrap">
           <div className="tds-copy">
-            <div className="eyebrow">Technical Resources</div>
             <h2>Technical information when you need it.</h2>
             <p>
               Access product-specific Technical Data Sheets to support material evaluation,

@@ -47,7 +47,6 @@ export default function IndustriesSection() {
       <div className="container">
         <div className="section-head">
           <div>
-            <div className="eyebrow">Industries</div>
             <h2>Built for industries where material performance matters.</h2>
           </div>
           <p>Connect the material family with the real processing, durability and supply requirements of the end application.</p>

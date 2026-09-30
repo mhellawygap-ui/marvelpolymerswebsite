@@ -116,7 +116,6 @@ export default function ProductsSection() {
       <div className="container">
         <div className="section-head">
           <div>
-            <div className="eyebrow">Product Solutions</div>
             <h2>Materials built around application.</h2>
           </div>
           <p>Explore Marvel's portfolio by polymer family, processing method, application or technical requirement.</p>

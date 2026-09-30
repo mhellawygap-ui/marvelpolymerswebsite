@@ -43,12 +43,11 @@ export default function FamilyPage() {
               <span aria-hidden="true">/</span>
               <span>{family.shortName}</span>
             </nav>
-            <span className="chip chip-lg">{family.chip}</span>
             <h1>{family.name}</h1>
             <p className="fp-intro">{detail.intro}</p>
             <div className="hero-actions">
               <button className="btn primary" onClick={toQuote}>Request a Quote <span className="arrow">↓</span></button>
-              <a className="btn ghost" href={`mailto:${EMAIL}?subject=${encodeURIComponent(`Technical question — ${family.name}`)}`}>
+              <a className="btn ghost" {...link("contact")}>
                 Ask a Technical Question
               </a>
             </div>
@@ -68,7 +67,6 @@ export default function FamilyPage() {
       <section className="section fp-section">
         <div className="container">
           <div className="fp-head">
-            <div className="eyebrow">{family.typesLabel}</div>
             <h2>What's in this family.</h2>
           </div>
           <div className={`fp-types n${detail.resinTypes.length}`}>
@@ -91,7 +89,6 @@ export default function FamilyPage() {
       <section className="section alt fp-section">
         <div className="container">
           <div className="fp-head">
-            <div className="eyebrow">Applications</div>
             <h2>{detail.gradesTitle}.</h2>
           </div>
 
@@ -124,11 +121,10 @@ function GradeCard({ grade, onQuote }: { grade: Grade; onQuote: () => void }) {
     <article className="fp-grade">
       <div className="fp-grade-img">
         <img src={grade.img} alt={grade.title} loading="lazy" />
-        <span className="fp-process">{grade.process}</span>
       </div>
       <div className="fp-grade-body">
         <h3>{grade.title}</h3>
-        <ul className="fp-focus">{grade.focus.map((f) => <li key={f}>{f}</li>)}</ul>
+        <p className="fp-grade-desc">{grade.desc}</p>
         <button className="fp-grade-cta" onClick={onQuote}>Request this grade <span className="arrow">→</span></button>
       </div>
     </article>
@@ -146,7 +142,6 @@ function CoatingLayers() {
     <section className="section fp-section fp-layers-sec">
       <div className="container fp-layers-grid">
         <div>
-          <div className="eyebrow">How it works</div>
           <h2>Three layers, one protection system.</h2>
           <p className="fp-lead">
             A 3-layer coating is applied over the steel pipe in sequence. Marvel supplies the adhesive resin and the
@@ -233,7 +228,6 @@ function QuoteSection({ familyName, resinTypes, applications }: { familyName: st
     <section className="section fp-quote" id="quote">
       <div className="container fp-quote-grid">
         <aside className="fp-quote-card">
-          <div className="eyebrow" style={{ color: "#fff", opacity: .7 }}>Request a Quote</div>
           <h2>Tell us what you need.</h2>
           <p>Share the grade or application and we'll come back with suitable options, availability and pricing.</p>
           <ul className="fp-include">

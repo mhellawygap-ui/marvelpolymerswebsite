@@ -91,7 +91,6 @@ export default function ResourcesPage() {
     <main className="res">
       <section className="pp-intro">
         <div className="container">
-          <div className="eyebrow">Resources</div>
           <h1>Technical resources.</h1>
           <p>Request data sheets, read short material guides and find answers to common buying questions.</p>
           <nav className="pp-jump" aria-label="Resources">
@@ -106,7 +105,6 @@ export default function ResourcesPage() {
       <section className="section res-docs" id="documents">
         <div className="container res-docs-grid">
           <div>
-            <div className="eyebrow">Technical Documents</div>
             <h2>Request a TDS or SDS.</h2>
             <p className="res-lead">Pick the product and document you need. We'll email the available documentation for that grade.</p>
             <ul className="res-doclist">
@@ -156,7 +154,6 @@ export default function ResourcesPage() {
       <section className="section alt" id="guides">
         <div className="container">
           <div className="fp-head">
-            <div className="eyebrow">Guides</div>
             <h2>Short material guides.</h2>
           </div>
           <div className="res-guides">
@@ -192,7 +189,6 @@ export default function ResourcesPage() {
       <section className="section" id="faq">
         <div className="container res-faq-grid">
           <div>
-            <div className="eyebrow">FAQ</div>
             <h2>Buying questions, answered.</h2>
             <p className="res-lead">Can't find your answer? <a {...link("contact")}>Ask an expert</a>.</p>
           </div>

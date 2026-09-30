@@ -105,7 +105,6 @@ export default function AboutPage() {
       <section className="page-hero">
         <div className="container page-hero-grid">
           <div>
-            <div className="eyebrow">About Marvel Polymers</div>
             <h1>A technical-commercial partner for industrial polymer supply.</h1>
             <p>
               Marvel Polymers connects industrial customers with specialized polymer solutions,
@@ -130,7 +129,6 @@ export default function AboutPage() {
       <section className="section">
         <div className="container story-grid">
           <div>
-            <div className="eyebrow">Who We Are</div>
             <h2>Built around the application, not just the resin.</h2>
           </div>
           <div>
@@ -153,7 +151,6 @@ export default function AboutPage() {
         <div className="container">
           <div className="section-head">
             <div>
-              <div className="eyebrow">What Makes Marvel Different</div>
               <h2>Technical thinking. Commercial execution.</h2>
             </div>
             <p>A focused model built to make industrial material sourcing easier to evaluate, structure and manage.</p>
@@ -206,7 +203,6 @@ export default function AboutPage() {
         <div className="container">
           <div className="cta-box">
             <div>
-              <div className="eyebrow" style={{ color: "#fff", opacity: .7 }}>Start a Conversation</div>
               <h2>Have a material requirement?</h2>
               <p>
                 Share your application, specification or current grade and let us help identify the

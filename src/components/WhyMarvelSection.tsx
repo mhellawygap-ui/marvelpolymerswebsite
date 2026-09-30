@@ -25,7 +25,6 @@ export default function WhyMarvelSection() {
       <div className="container">
         <div className="section-head">
           <div>
-            <div className="eyebrow">Why Marvel</div>
             <h2>More than polymer supply.</h2>
           </div>
           <p>We connect technical requirements with suitable material families, practical sourcing and commercially structured supply.</p>

@@ -12,7 +12,6 @@ export default function IndustriesPage() {
     <main className="ind">
       <section className="pp-intro">
         <div className="container">
-          <div className="eyebrow">Industries</div>
           <h1>Industries we supply.</h1>
           <p>Start from what you make. Each industry shows the parts we support and the materials behind them.</p>
           <nav className="pp-jump" aria-label="Industries">
@@ -58,7 +57,6 @@ export default function IndustriesPage() {
         <div className="container">
           <div className="cta-box">
             <div>
-              <div className="eyebrow" style={{ color: "#fff", opacity: .7 }}>Your application</div>
               <h2>Don't see your industry?</h2>
               <p>Tell us what you make and how you process it — we'll point you to the right materials.</p>
             </div>

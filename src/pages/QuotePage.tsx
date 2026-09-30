@@ -44,7 +44,6 @@ export default function QuotePage() {
     <main className="rq">
       <section className="rq-intro">
         <div className="container">
-          <div className="eyebrow">Request a Quote</div>
           <h1>Get a quote in three steps.</h1>
           <p>Tell us the material, how much you need and where it goes. We'll reply by email with options, availability and pricing.</p>
         </div>

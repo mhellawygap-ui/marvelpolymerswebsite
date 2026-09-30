@@ -33,7 +33,6 @@ export default function ProcessSection() {
       <div className="container">
         <div className="section-head">
           <div>
-            <div className="eyebrow">How We Work</div>
             <h2>From requirement to delivered solution.</h2>
           </div>
           <p>A clear technical-commercial journey built around your actual material requirement.</p>

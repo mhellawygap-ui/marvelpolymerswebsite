@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export type Page = "home" | "about" | "contact" | "products" | "family" | "industries" | "resources" | "quote" | "thanks";
+export type Page = "home" | "about" | "contact" | "products" | "family" | "industries" | "resources" | "quote" | "thanks" | "privacy" | "terms" | "cookies";
 
 interface NavCtxType {
   page: Page;
@@ -12,7 +12,7 @@ interface NavCtxType {
 export const NavCtx = createContext<NavCtxType>({ page: "home", anchor: "", navigate: () => {} });
 export const useNav = () => useContext(NavCtx);
 
-const PAGES: Page[] = ["home", "about", "contact", "products", "family", "industries", "resources", "quote", "thanks"];
+const PAGES: Page[] = ["home", "about", "contact", "products", "family", "industries", "resources", "quote", "thanks", "privacy", "terms", "cookies"];
 
 /**
  * Hash routes, so every page has a shareable link and works on static hosting:
