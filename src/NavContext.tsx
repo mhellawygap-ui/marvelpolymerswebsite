@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export type Page = "home" | "about" | "contact" | "products";
+export type Page = "home" | "about" | "contact" | "products" | "family";
 
 interface NavCtxType {
   page: Page;
@@ -12,20 +12,26 @@ interface NavCtxType {
 export const NavCtx = createContext<NavCtxType>({ page: "home", anchor: "", navigate: () => {} });
 export const useNav = () => useContext(NavCtx);
 
-const PAGES: Page[] = ["home", "about", "contact", "products"];
+const PAGES: Page[] = ["home", "about", "contact", "products", "family"];
 
 /**
  * Hash routes, so every page has a shareable link and works on static hosting:
  *   #/            → home
  *   #/about       → about
- *   #/products    → products
- *   #/products/polyethylene → products, scrolled to that family
+ *   #/products    → products (All tab)
+ *   #/products/filter/polyethylene → products, filtered to one family tab
+ *   #/products/polyethylene → that family's detail page
  *   #industries   → home, scrolled to that section (plain in-page anchors keep working)
  */
 export function parseHash(hash: string): { page: Page; anchor: string } {
   const h = hash.replace(/^#/, "");
   if (h.startsWith("/")) {
-    const [p, a = ""] = h.slice(1).split("/");
+    const [p, a = "", b = ""] = h.slice(1).split("/");
+    if (p === "products") {
+      if (a === "filter") return { page: "products", anchor: b };
+      if (a && a !== "all") return { page: "family", anchor: a };
+      return { page: "products", anchor: a };
+    }
     const page = (PAGES.includes(p as Page) ? p : "home") as Page;
     return { page, anchor: a };
   }
@@ -34,5 +40,7 @@ export function parseHash(hash: string): { page: Page; anchor: string } {
 
 export function hashFor(p: Page, anchor = ""): string {
   if (p === "home") return anchor ? `#${anchor}` : "#/";
+  if (p === "family") return `#/products/${anchor}`;
+  if (p === "products" && anchor && anchor !== "all") return `#/products/filter/${anchor}`;
   return `#/${p}${anchor ? `/${anchor}` : ""}`;
 }

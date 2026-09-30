@@ -115,20 +115,18 @@ function Shelf({
           <span className="pp-shelf-num">{f.num}</span>
           <h2>{f.name}</h2>
           <p>{f.description}</p>
-          {!single && (
-            <a className="pp-shelf-link" {...link("products", f.slug)}>
-              Only show {f.shortName} <span className="arrow">→</span>
-            </a>
-          )}
+          <a className="pp-shelf-link" {...link("family", f.slug)}>
+            Explore {f.shortName} <span className="arrow">→</span>
+          </a>
         </div>
       </header>
       <ul className="pp-items">
         {items.map((p) => (
           <li key={p.code}>
-            <a className="pp-item" {...link("contact")}>
+            <a className="pp-item" {...link("family", f.slug)}>
               <span className="pp-item-code">{p.code}</span>
               <span className="pp-item-name">{p.name}</span>
-              <span className="pp-item-cta">Request <span className="arrow">↗</span></span>
+              <span className="pp-item-cta">View details <span className="arrow">→</span></span>
             </a>
           </li>
         ))}

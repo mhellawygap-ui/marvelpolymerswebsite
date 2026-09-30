@@ -43,7 +43,7 @@ export default function Header() {
               </a>
               <div className="mega-panel">
                 {productCategories.map((cat) => (
-                  <a key={cat.num} className="mega-item" {...link("products", cat.slug)}>
+                  <a key={cat.num} className="mega-item" {...link("family", cat.slug)}>
                     <span className="mega-num">{cat.num}</span>
                     <div>
                       <p className="mega-name">{cat.name}</p>

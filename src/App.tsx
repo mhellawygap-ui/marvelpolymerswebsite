@@ -14,12 +14,15 @@ import FinalCTASection from "@/components/FinalCTASection";
 import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
 import ProductsPage from "@/pages/ProductsPage";
+import FamilyPage from "@/pages/FamilyPage";
+import { families } from "@/data/products";
 
 const TITLES: Record<Page, string> = {
   home: "Marvel Polymers · Industrial Polymer Solutions",
   about: "About — Marvel Polymers",
   contact: "Contact — Marvel Polymers",
   products: "Products — Marvel Polymers",
+  family: "Products — Marvel Polymers",
 };
 
 export default function App() {
@@ -42,8 +45,9 @@ export default function App() {
   };
 
   useEffect(() => {
-    document.title = TITLES[page];
-  }, [page]);
+    const fam = page === "family" ? families.find((f) => f.slug === anchor) : undefined;
+    document.title = fam ? `${fam.name} — Marvel Polymers` : TITLES[page];
+  }, [page, anchor]);
 
   // After the page renders, scroll to the requested section (or the top).
   useEffect(() => {
@@ -70,6 +74,7 @@ export default function App() {
       {page === "about" && <AboutPage />}
       {page === "contact" && <ContactPage />}
       {page === "products" && <ProductsPage />}
+      {page === "family" && <FamilyPage key={anchor} />}
       <Footer />
     </NavCtx.Provider>
   );
