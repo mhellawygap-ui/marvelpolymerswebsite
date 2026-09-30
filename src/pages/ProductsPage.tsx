@@ -1,11 +1,25 @@
+import { useEffect, useRef } from "react";
 import { useNav, hashFor, type Page } from "@/NavContext";
-import { families, type Family } from "@/data/products";
+import { families, productsByFamily, type Family } from "@/data/products";
 
-/** Card sizes follow the home-page product grid: 2 wide · 3 narrow · 2 wide. */
-const SIZES = ["wide", "wide", "narrow", "narrow", "narrow", "wide", "wide"];
+const ALL = "all";
 
 export default function ProductsPage() {
-  const { navigate } = useNav();
+  const { anchor, navigate } = useNav();
+  const active = families.some((f) => f.slug === anchor) ? anchor : ALL;
+  const shown = active === ALL ? families : families.filter((f) => f.slug === active);
+  const tabsRef = useRef<HTMLElement>(null);
+
+  // Keep the selected tab visible when the tab strip scrolls sideways (phones).
+  useEffect(() => {
+    const el = tabsRef.current?.querySelector<HTMLElement>(".pp-tab.active");
+    const strip = tabsRef.current;
+    if (el && strip && strip.scrollWidth > strip.clientWidth) {
+      strip.scrollTo({ left: el.offsetLeft - 14, behavior: "smooth" });
+    }
+  }, [active]);
+
+  const total = families.reduce((n, f) => n + productsByFamily[f.slug].length, 0);
 
   const link = (p: Page, a = "") => ({
     href: hashFor(p, a),
@@ -18,27 +32,41 @@ export default function ProductsPage() {
       <section className="pp-intro">
         <div className="container">
           <div className="eyebrow">Products</div>
-          <h1>Our product families.</h1>
+          <h1>Our products.</h1>
           <p>
-            Seven material families for infrastructure, packaging, automotive and industrial applications.
-            Choose a family to see its grades and applications.
+            Polymer materials for infrastructure, packaging, automotive and industrial applications. Pick a
+            family to see only its products.
           </p>
-          <nav className="pp-jump" aria-label="Product families">
-            {families.map((f) => (
-              <a key={f.slug} {...link("products", f.slug)}>{f.shortName}</a>
-            ))}
-          </nav>
         </div>
       </section>
 
-      {/* Families */}
-      <section className="section alt pp-families">
+      {/* Tabs */}
+      <div className="pp-tabbar">
         <div className="container">
-          <div className="pp-grid">
-            {families.map((f, i) => (
-              <FamilyCard key={f.slug} family={f} size={SIZES[i]} link={link} />
+          <nav className="pp-tabs" aria-label="Product families" ref={tabsRef}>
+            <a className={`pp-tab${active === ALL ? " active" : ""}`} aria-current={active === ALL ? "page" : undefined} {...link("products", ALL)}>
+              All <span className="pp-count">{total}</span>
+            </a>
+            {families.map((f) => (
+              <a
+                key={f.slug}
+                className={`pp-tab${active === f.slug ? " active" : ""}`}
+                aria-current={active === f.slug ? "page" : undefined}
+                {...link("products", f.slug)}
+              >
+                {f.shortName} <span className="pp-count">{productsByFamily[f.slug].length}</span>
+              </a>
             ))}
-          </div>
+          </nav>
+        </div>
+      </div>
+
+      {/* Product shelves */}
+      <section className="pp-shelves" id={ALL}>
+        <div className="container">
+          {shown.map((f) => (
+            <Shelf key={f.slug} family={f} single={active !== ALL} link={link} />
+          ))}
         </div>
       </section>
 
@@ -66,30 +94,45 @@ export default function ProductsPage() {
   );
 }
 
-function FamilyCard({
+function Shelf({
   family: f,
-  size,
+  single,
   link,
 }: {
   family: Family;
-  size: string;
+  single: boolean;
   link: (p: Page, a?: string) => { href: string; onClick: (e: React.MouseEvent) => void };
 }) {
+  const items = productsByFamily[f.slug];
   return (
-    <a id={f.slug} className={`pp-card ${size}`} {...link("products", f.slug)}>
-      <div className="pp-card-img">
-        <img src={f.img} alt={f.name} loading="lazy" />
-        <span className="chip chip-lg">{f.chip}</span>
-      </div>
-      <div className="pp-card-body">
-        <span className="pp-card-num">{f.num}</span>
-        <h3>{f.name}</h3>
-        <p>{f.description}</p>
-        <div className="pp-card-types">
-          {f.types.map((t) => <span key={t}>{t}</span>)}
+    <article className={`pp-shelf${single ? " single" : ""}`} id={f.slug}>
+      <header className="pp-shelf-head">
+        <div className="pp-shelf-img">
+          <img src={f.img} alt={f.name} loading="lazy" />
+          <span className="chip chip-lg">{f.chip}</span>
         </div>
-        <span className="pp-card-cta">View products <span className="arrow">→</span></span>
-      </div>
-    </a>
+        <div className="pp-shelf-info">
+          <span className="pp-shelf-num">{f.num}</span>
+          <h2>{f.name}</h2>
+          <p>{f.description}</p>
+          {!single && (
+            <a className="pp-shelf-link" {...link("products", f.slug)}>
+              Only show {f.shortName} <span className="arrow">→</span>
+            </a>
+          )}
+        </div>
+      </header>
+      <ul className="pp-items">
+        {items.map((p) => (
+          <li key={p.code}>
+            <a className="pp-item" {...link("contact")}>
+              <span className="pp-item-code">{p.code}</span>
+              <span className="pp-item-name">{p.name}</span>
+              <span className="pp-item-cta">Request <span className="arrow">↗</span></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </article>
   );
 }

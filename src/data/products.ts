@@ -178,3 +178,53 @@ export const families: Family[] = [
     menuApps: "Structural Polymers, Filled Compounds",
   },
 ];
+
+export interface Product {
+  code: string;
+  name: string;
+}
+
+/** Products shown under each family tab. Names are the standard material names only. */
+export const productsByFamily: Record<string, Product[]> = {
+  polyethylene: [
+    { code: "HDPE", name: "High-Density Polyethylene" },
+    { code: "MDPE", name: "Medium-Density Polyethylene" },
+    { code: "LLDPE", name: "Linear Low-Density Polyethylene" },
+    { code: "LDPE", name: "Low-Density Polyethylene" },
+    { code: "PE100 / PE80", name: "Polyethylene Pipe Compounds" },
+  ],
+  polypropylene: [
+    { code: "PP-H", name: "Polypropylene Homopolymer" },
+    { code: "PP-B", name: "Polypropylene Block Copolymer" },
+    { code: "PP-R", name: "Polypropylene Random Copolymer" },
+    { code: "Modified PP", name: "Modified Polypropylene Compounds" },
+  ],
+  "pipeline-coatings": [
+    { code: "3LPE", name: "Three-Layer Polyethylene Coating" },
+    { code: "3LPP", name: "Three-Layer Polypropylene Coating" },
+    { code: "Adhesive", name: "Adhesive / Tie-Layer Resins" },
+  ],
+  "engineering-thermoplastics": [
+    { code: "PA6", name: "Polyamide 6" },
+    { code: "PA66", name: "Polyamide 66" },
+    { code: "PC", name: "Polycarbonate & PC Blends" },
+    { code: "PBT", name: "Polybutylene Terephthalate" },
+  ],
+  "thermoplastic-elastomers": [
+    { code: "TPE", name: "Thermoplastic Elastomer" },
+    { code: "TPV", name: "Thermoplastic Vulcanizate" },
+  ],
+  "performance-additives": [
+    { code: "Color", name: "Color Masterbatches" },
+    { code: "UV", name: "UV Stabilizer Masterbatches" },
+    { code: "AO", name: "Antioxidant Masterbatches" },
+    { code: "Processing", name: "Processing Aids" },
+    { code: "Anti-Static", name: "Anti-Static Additives" },
+    { code: "Functional", name: "Functional Additives" },
+  ],
+  "specialty-composites": [
+    { code: "Composites", name: "Composite Materials" },
+    { code: "Reinforcement", name: "Reinforcement Systems" },
+    { code: "Matrix Resins", name: "Specialty Matrix Resins" },
+  ],
+};
