@@ -2,9 +2,6 @@
  * Products Home content and navigator mappings.
  * Kept separate from layout so it can later be moved into WordPress fields / a CMS.
  *
- * The filter mappings below (processes, applications, requirements per family) are
- * navigational only — they point a visitor to a starting family, they are not
- * technical claims. Review them with Marvel's technical team before launch.
  */
 import peImg from "@/imports/PE.png";
 import ppImg from "@/imports/PP.png";
@@ -16,56 +13,6 @@ import perfImg from "@/imports/Performance.png";
 const specialtyImg =
   "https://images.unsplash.com/photo-1767884161504-8bcd877d8971?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080";
 
-export const PROCESS_OPTIONS = [
-  "Pipe Extrusion",
-  "General Extrusion",
-  "Film Extrusion",
-  "Blow Molding",
-  "Injection Molding",
-  "Rotational Molding",
-  "Compression Molding",
-  "Compounding",
-  "Coating / Multi-Layer Coating",
-  "Other / Not Sure",
-] as const;
-
-export const APPLICATION_OPTIONS = [
-  "Water & Utility Piping",
-  "Gas Distribution",
-  "Sewage & Drainage",
-  "Steel Pipeline Coating",
-  "Drums & Industrial Containers",
-  "Bottles",
-  "Caps & Closures",
-  "Flexible Film",
-  "Heavy-Duty Sacks",
-  "Raffia / Woven Applications",
-  "Automotive Components",
-  "Electrical & Electronic Components",
-  "Industrial Components",
-  "Seals & Flexible Parts",
-  "Construction",
-  "Consumer Goods",
-  "Composites",
-  "Other",
-] as const;
-
-export const REQUIREMENT_OPTIONS = [
-  "Pressure Performance",
-  "Chemical Resistance",
-  "Impact Resistance",
-  "Heat Resistance",
-  "Flexibility",
-  "UV Stability",
-  "Dimensional Stability",
-  "Reinforcement",
-  "Flame Retardancy",
-  "Color",
-  "Processing Improvement",
-  "Adhesion",
-  "Other / Not Sure",
-] as const;
-
 export interface Family {
   slug: string;
   num: string;
@@ -76,14 +23,9 @@ export interface Family {
   typesLabel: string;
   types: string[];
   applicationFocus: string[];
-  cta: string;
   img: string;
   /** Short line for the header mega-menu. */
   menuApps: string;
-  processes: string[];
-  applications: string[];
-  requirements: string[];
-  keywords: string[];
 }
 
 export const families: Family[] = [
@@ -106,22 +48,8 @@ export const families: Family[] = [
       "Film",
       "General Extrusion",
     ],
-    cta: "Explore PE Solutions",
     img: peImg,
     menuApps: "Pipe, Film, Blow Molding, Rotomolding",
-    processes: ["Pipe Extrusion", "General Extrusion", "Film Extrusion", "Blow Molding", "Injection Molding", "Rotational Molding"],
-    applications: [
-      "Water & Utility Piping",
-      "Gas Distribution",
-      "Sewage & Drainage",
-      "Drums & Industrial Containers",
-      "Bottles",
-      "Caps & Closures",
-      "Flexible Film",
-      "Heavy-Duty Sacks",
-    ],
-    requirements: ["Pressure Performance"],
-    keywords: ["pe", "hdpe", "mdpe", "lldpe", "ldpe", "pe100", "pe80", "pipe", "film", "rotomolding", "polyethylene"],
   },
   {
     slug: "polypropylene",
@@ -141,20 +69,8 @@ export const families: Family[] = [
       "Consumer & Industrial Components",
       "Compounding",
     ],
-    cta: "Explore PP Solutions",
     img: ppImg,
     menuApps: "Injection Molding, Extrusion, Raffia, Automotive",
-    processes: ["Pipe Extrusion", "General Extrusion", "Injection Molding", "Compounding"],
-    applications: [
-      "Water & Utility Piping",
-      "Raffia / Woven Applications",
-      "Automotive Components",
-      "Industrial Components",
-      "Consumer Goods",
-      "Caps & Closures",
-    ],
-    requirements: ["Chemical Resistance", "Dimensional Stability"],
-    keywords: ["pp", "pp-h", "pp-b", "pp-r", "ppr", "homopolymer", "copolymer", "raffia", "polypropylene"],
   },
   {
     slug: "pipeline-coatings",
@@ -174,13 +90,8 @@ export const families: Family[] = [
       "Adhesive / Tie-Layer Systems",
       "Multi-Layer Protection",
     ],
-    cta: "Explore Pipeline Coatings",
     img: threeLpeImg,
     menuApps: "3LPE / 3LPP, Steel Pipe Anti-Corrosion",
-    processes: ["Coating / Multi-Layer Coating"],
-    applications: ["Steel Pipeline Coating"],
-    requirements: ["Adhesion", "Impact Resistance"],
-    keywords: ["3lpe", "3lpp", "coating", "adhesive", "tie-layer", "steel", "pipeline", "anti-corrosion", "oil", "gas"],
   },
   {
     slug: "engineering-thermoplastics",
@@ -200,13 +111,8 @@ export const families: Family[] = [
       "Heat-Resistant Applications",
       "Precision Molded Parts",
     ],
-    cta: "Explore Engineering Thermoplastics",
     img: paImg,
     menuApps: "PA, PC, PBT — Reinforced & Specialty Grades",
-    processes: ["Injection Molding", "Compounding"],
-    applications: ["Automotive Components", "Electrical & Electronic Components", "Industrial Components"],
-    requirements: ["Heat Resistance", "Dimensional Stability", "Reinforcement"],
-    keywords: ["pa", "pa6", "pa66", "nylon", "polyamide", "pc", "polycarbonate", "pbt", "reinforced", "engineering"],
   },
   {
     slug: "thermoplastic-elastomers",
@@ -226,13 +132,8 @@ export const families: Family[] = [
       "Hoses & Profiles",
       "Consumer Applications",
     ],
-    cta: "Explore TPE & TPV",
     img: tpeImg,
     menuApps: "Seals, Soft-Touch, Overmolding, TPV",
-    processes: ["Injection Molding", "General Extrusion"],
-    applications: ["Seals & Flexible Parts", "Automotive Components", "Consumer Goods"],
-    requirements: ["Flexibility"],
-    keywords: ["tpe", "tpv", "elastomer", "seal", "soft-touch", "overmolding", "hose", "profile", "flexible"],
   },
   {
     slug: "performance-additives",
@@ -252,21 +153,8 @@ export const families: Family[] = [
       "Anti-Static Performance",
       "Application-Specific Formulation",
     ],
-    cta: "Explore Performance Solutions",
     img: perfImg,
     menuApps: "Color, UV Stabilizers, Flame Retardant",
-    processes: ["Compounding", "Film Extrusion", "Injection Molding", "Blow Molding"],
-    applications: [
-      "Drums & Industrial Containers",
-      "Bottles",
-      "Caps & Closures",
-      "Flexible Film",
-      "Heavy-Duty Sacks",
-      "Industrial Components",
-      "Consumer Goods",
-    ],
-    requirements: ["UV Stability", "Color", "Processing Improvement", "Flame Retardancy"],
-    keywords: ["masterbatch", "additive", "color", "colour", "uv", "antioxidant", "anti-static", "antistatic", "flame"],
   },
   {
     slug: "specialty-composites",
@@ -286,80 +174,7 @@ export const families: Family[] = [
       "Specialized Manufacturing",
       "Performance-Driven Applications",
     ],
-    cta: "Explore Specialty Materials",
     img: specialtyImg,
     menuApps: "Structural Polymers, Filled Compounds",
-    processes: ["Compression Molding"],
-    applications: ["Composites", "Construction"],
-    requirements: ["Reinforcement"],
-    keywords: ["composite", "specialty", "speciality", "matrix", "resin", "structural", "reinforcement"],
   },
-];
-
-export interface Preset {
-  title: string;
-  detail: string;
-  likely: string;
-  slugs: string[];
-}
-
-export const applicationGroups: Preset[] = [
-  {
-    title: "Infrastructure & Pressure Pipes",
-    detail: "Water · Gas · Sewage · Industrial Networks",
-    likely: "PE · PP · Pipeline Systems",
-    slugs: ["polyethylene", "polypropylene", "pipeline-coatings"],
-  },
-  {
-    title: "Rigid Packaging & Containers",
-    detail: "Drums · Bottles · Containers · Caps & Closures",
-    likely: "HDPE · PP · Performance Additives",
-    slugs: ["polyethylene", "polypropylene", "performance-additives"],
-  },
-  {
-    title: "Flexible Film & Packaging",
-    detail: "Film · Sacks · Liners · Flexible Packaging",
-    likely: "LDPE · LLDPE · HDPE · Additives",
-    slugs: ["polyethylene", "performance-additives"],
-  },
-  {
-    title: "Automotive & Transportation",
-    detail: "Structural Parts · Under-Hood Components · Seals · Interior Parts",
-    likely: "Modified PP · PA · PBT · PC · TPE / TPV",
-    slugs: ["polypropylene", "engineering-thermoplastics", "thermoplastic-elastomers"],
-  },
-  {
-    title: "Pipeline Protection",
-    detail: "External Steel Pipe Coating · Adhesion · Mechanical Protection",
-    likely: "3LPE · 3LPP · Adhesive Resins",
-    slugs: ["pipeline-coatings"],
-  },
-  {
-    title: "Industrial & Consumer Components",
-    detail: "Molded Parts · Appliances · Technical Components",
-    likely: "PP · Engineering Thermoplastics · TPE · Additives",
-    slugs: ["polypropylene", "engineering-thermoplastics", "thermoplastic-elastomers", "performance-additives"],
-  },
-  {
-    title: "Rotational Molding",
-    detail: "Tanks · Containers · Large Hollow Components",
-    likely: "PE Rotomolding Powders",
-    slugs: ["polyethylene"],
-  },
-  {
-    title: "Composite Applications",
-    detail: "Infrastructure · Transportation · Structural Components",
-    likely: "Specialty & Composite Materials",
-    slugs: ["specialty-composites"],
-  },
-];
-
-export const processGroups: Preset[] = [
-  { title: "Extrusion", detail: "Pipe · Profile · Sheet · General Extrusion", likely: "", slugs: ["polyethylene", "polypropylene", "thermoplastic-elastomers"] },
-  { title: "Film Extrusion", detail: "Blown Film · Flexible Packaging · Industrial Film", likely: "", slugs: ["polyethylene", "performance-additives"] },
-  { title: "Injection Molding", detail: "Crates · Caps · Technical Components · Automotive Parts", likely: "", slugs: ["polyethylene", "polypropylene", "engineering-thermoplastics", "thermoplastic-elastomers"] },
-  { title: "Blow Molding", detail: "Bottles · Drums · Industrial Containers", likely: "", slugs: ["polyethylene"] },
-  { title: "Rotational Molding", detail: "Tanks · Large Containers · Hollow Products", likely: "", slugs: ["polyethylene"] },
-  { title: "Compounding", detail: "Modified Performance · Reinforcement · Functional Additives", likely: "", slugs: ["polypropylene", "engineering-thermoplastics", "performance-additives"] },
-  { title: "Pipeline Coating", detail: "3LPE · 3LPP · Adhesive / Tie-Layer Systems", likely: "", slugs: ["pipeline-coatings"] },
 ];
