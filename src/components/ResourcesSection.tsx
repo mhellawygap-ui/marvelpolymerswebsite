@@ -40,8 +40,8 @@ export default function ResourcesSection() {
               <svg width="28" height="34" viewBox="0 0 28 34" fill="none" aria-hidden="true">
                 <path d="M4 0h15l9 9v21a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4z" fill="#edf2f7" stroke="#dbe4ee" strokeWidth="1.5"/>
                 <path d="M19 0v9h9" fill="none" stroke="#dbe4ee" strokeWidth="1.5"/>
-                <line x1="6" y1="16" x2="22" y2="16" stroke="#012a57" strokeWidth="1.5" strokeLinecap="round"/>
-                <line x1="6" y1="21" x2="22" y2="21" stroke="#012a57" strokeWidth="1.5" strokeLinecap="round"/>
+                <line x1="6" y1="16" x2="22" y2="16" stroke="#182c55" strokeWidth="1.5" strokeLinecap="round"/>
+                <line x1="6" y1="21" x2="22" y2="21" stroke="#182c55" strokeWidth="1.5" strokeLinecap="round"/>
                 <line x1="6" y1="26" x2="15" y2="26" stroke="#890b16" strokeWidth="1.5" strokeLinecap="round"/>
               </svg>
             </div>

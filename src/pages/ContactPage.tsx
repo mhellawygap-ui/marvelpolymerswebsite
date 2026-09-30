@@ -86,7 +86,7 @@ export default function ContactPage() {
               <div style={{
                 height: 120,
                 borderRadius: 12,
-                background: "linear-gradient(135deg, rgba(1,42,87,.5) 0%, rgba(137,11,22,.2) 100%)",
+                background: "linear-gradient(135deg, rgba(24,44,85,.5) 0%, rgba(137,11,22,.2) 100%)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",

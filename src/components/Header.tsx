@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "@/imports/_890b16__1800_x_748_px___1700_x_400_px_.png";
+import logo from "@/imports/marvel-logo.png";
 import { useNav, hashFor, type Page } from "@/NavContext";
 import { families } from "@/data/products";
 
@@ -30,7 +30,7 @@ export default function Header() {
       <header className="header">
         <div className="container nav">
           <a className="brand" {...link("home")}>
-            <img src={logo} alt="Marvel Polymers" style={{ width: 170, height: "auto" }} />
+            <img src={logo} alt="MARVEL Advanced Polymers" style={{ width: 180, height: "auto" }} />
           </a>
 
           <nav className="links">

@@ -1,4 +1,4 @@
-import logo from "@/imports/_890b16__1800_x_748_px___1700_x_400_px_.png";
+import logo from "@/imports/marvel-logo-white.png";
 
 export default function Footer() {
   return (
@@ -6,8 +6,10 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div>
-            <img className="footer-logo" src={logo} alt="Marvel Polymers" />
+            <img className="footer-logo" src={logo} alt="MARVEL Advanced Polymers" />
             <p className="footer-desc">Specialized polymer solutions for demanding industrial applications.</p>
+            <p className="footer-tagline">Made for a stronger tomorrow.</p>
+            <p className="footer-values">Quality <span>|</span> Reliability <span>|</span> Performance</p>
           </div>
           <div>
             <h4>Products</h4>
@@ -33,7 +35,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="copyright">
-          <span>© 2026 Marvel Polymers. All rights reserved.</span>
+          <span>© 2026 MARVEL Advanced Polymers. All rights reserved.</span>
           <span className="legal-links"><a href="#/privacy">Privacy Policy</a> &nbsp; • &nbsp; <a href="#/terms">Terms</a> &nbsp; • &nbsp; <a href="#/cookies">Cookie Preferences</a></span>
         </div>
       </div>

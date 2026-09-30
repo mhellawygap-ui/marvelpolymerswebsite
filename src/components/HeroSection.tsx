@@ -1,5 +1,5 @@
 import heroImg from "@/imports/_890b16__7_.png";
-import mark from "@/imports/2.png";
+import mark from "@/imports/marvel-mark.png";
 
 export default function HeroSection() {
   return (
