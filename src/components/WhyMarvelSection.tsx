@@ -41,7 +41,7 @@ export default function WhyMarvelSection() {
         <div className="value-grid" ref={gridRef}>
           {[
             { num: "01", h3: "Application-Led Selection", p: "Start with the end use, processing method and target performance — not just a resin name." },
-            { num: "02", h3: "Specialized Portfolio", p: "Polymer families, compounds, coatings, engineering materials and performance additives." },
+            { num: "02", h3: "Specialized Portfolio", p: "PE100 & PE80 pipe compounds, rotomolding materials, glass-fibre PP, pipe coatings and masterbatches." },
             { num: "03", h3: "Technical + Commercial Support", p: "Material guidance combined with sourcing, documentation and commercial coordination." },
             { num: "04", h3: "Global Supply", p: "Support for project, recurring and international supply requirements through one commercial contact." },
           ].map((v) => (

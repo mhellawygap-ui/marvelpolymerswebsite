@@ -17,7 +17,7 @@ const principles = [
   {
     num: "02",
     title: "Specialized Portfolio",
-    desc: "Polymer families, compounds, coatings, engineering materials and performance additives — under one commercial relationship.",
+    desc: "Pipe compounds, rotomolding materials, glass-fibre PP, pipe coatings and masterbatches — under one commercial relationship.",
     icon: (
       <svg width="32" height="32" viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <rect x="6" y="6" width="10" height="10" rx="2" />

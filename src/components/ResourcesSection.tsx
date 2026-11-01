@@ -1,24 +1,12 @@
 import { useNav } from "@/NavContext";
+import { families } from "@/data/products";
+import { familyDetails } from "@/data/familyDetails";
 
 const tdsProducts = [
   "Select a product grade…",
-  "Polyethylene — HDPE (MP-HD5502)",
-  "Polyethylene — HDPE Blow Molding Grade",
-  "Polyethylene — LLDPE Film Grade",
-  "Polyethylene — LDPE Extrusion Grade",
-  "Polypropylene — PP-H Homopolymer",
-  "Polypropylene — PP-B Copolymer",
-  "Polypropylene — PP-R Pipe Grade",
-  "Pipeline Coatings — 3LPE Adhesive Resin",
-  "Pipeline Coatings — 3LPP Adhesive Resin",
-  "Engineering Thermoplastics — PA6 GF30",
-  "Engineering Thermoplastics — PC General Purpose",
-  "Engineering Thermoplastics — PBT GF15",
-  "Thermoplastic Elastomers — TPE Shore 70A",
-  "Thermoplastic Elastomers — TPV Compound",
-  "Masterbatches — UV Stabilizer MB",
-  "Masterbatches — Black Color MB",
-  "Masterbatches — Antioxidant Concentrate",
+  ...families.flatMap((f) =>
+    familyDetails[f.slug].grades.map((g) => `${f.shortName} — ${g.title}${g.code ? ` (${g.code})` : ""}`),
+  ),
 ];
 
 export default function ResourcesSection() {

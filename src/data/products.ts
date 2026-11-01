@@ -3,16 +3,12 @@
  * Kept separate from layout so it can later be moved into WordPress fields / a CMS.
  *
  */
-import peImg from "@/imports/PE.png";
-import ppImg from "@/imports/PP.png";
-import threeLpeImg from "@/imports/3LPE.png";
-import paImg from "@/imports/PA.png";
-import tpeImg from "@/imports/TPE-1.png";
+import pipeBlackImg from "@/imports/pipe-black.jpg";
+import rotoImg from "@/imports/roto-tanks.jpg";
+import gfppImg from "@/imports/gfpp.jpg";
+import coatedPipeImg from "@/imports/coated-pipe.jpg";
 import perfImg from "@/imports/Performance.png";
 import { familyDetails } from "@/data/familyDetails";
-
-// Pexels, free to use
-const specialtyImg = "https://images.pexels.com/photos/33708756/pexels-photo-33708756.jpeg?auto=compress&cs=tinysrgb&w=1200";
 
 export interface Family {
   slug: string;
@@ -31,152 +27,92 @@ export interface Family {
 
 export const families: Family[] = [
   {
-    slug: "polyethylene",
+    slug: "pe-pipe-compounds",
     num: "01",
-    name: "Polyethylene (PE) Solutions",
-    shortName: "Polyethylene",
-    chip: "PE",
+    name: "PE100 & PE80 Pipe Compounds",
+    shortName: "PE Pipe Compounds",
+    chip: "PE100 / PE80",
     description:
-      "Versatile polyethylene solutions covering HDPE, MDPE / LLDPE and LDPE across infrastructure, packaging, molding and extrusion applications.",
+      "Ready-to-use polyethylene pipe compounds — PE100 (HDPE) and PE80 (MDPE) in black, orange, yellow and blue — for water, gas, sewer and industrial pipe networks.",
     typesLabel: "Resin Types",
-    types: ["HDPE", "MDPE / LLDPE", "LDPE"],
+    types: ["HDPE — PE100", "MDPE — PE80"],
     applicationFocus: [
-      "PE100 & PE80 Pipe Compounds",
-      "Water, Gas & Sewage Infrastructure",
-      "Blow Molding",
-      "Injection Molding",
-      "Rotomolding",
-      "Film",
-      "General Extrusion",
+      "Drinking Water Pipes",
+      "Natural Gas Pipes",
+      "Pressure Sewerage",
+      "Irrigation & Fire Suppression",
+      "Relining & Sea Outfall",
+      "Industrial Pipes",
     ],
-    img: peImg,
-    menuApps: "Pipe, Film, Blow Molding, Rotomolding",
+    img: pipeBlackImg,
+    menuApps: "PE100 & PE80 — Water, Gas, Sewer Pipes",
   },
   {
-    slug: "polypropylene",
+    slug: "rotomolding",
     num: "02",
-    name: "Polypropylene (PP) & Compounds",
-    shortName: "Polypropylene",
-    chip: "PP",
+    name: "Rotomolding Powders & Micro Pellets",
+    shortName: "Rotomolding",
+    chip: "MDPE Roto",
     description:
-      "Polypropylene materials for rigid, structural and process-driven applications where stiffness, durability, chemical resistance and efficient conversion matter.",
+      "UV-stabilized MDPE rotomolding powders and micro pellets, in black, white and custom colours, for tanks, containers and large hollow parts.",
+    typesLabel: "Material Types",
+    types: ["MDPE Roto Powders", "Micro Pellets"],
+    applicationFocus: ["Water Tanks", "Chemical Tanks", "Containers", "Bins", "Large Hollow Parts"],
+    img: rotoImg,
+    menuApps: "MDPE Powders, Micro Pellets, Colour Grades",
+  },
+  {
+    slug: "glass-fibre-pp",
+    num: "03",
+    name: "Glass-Fibre Reinforced PP",
+    shortName: "Glass-Fibre PP",
+    chip: "GF-PP",
+    description:
+      "Polypropylene chemically coupled with glass fibre (15–30%) for high stiffness and strength — in homopolymer and random copolymer grades.",
     typesLabel: "Resin Types",
-    types: ["PP-H", "PP-B", "PP-R", "Modified PP"],
+    types: ["Homopolymer GF-PP", "Random Copolymer GF-PP"],
     applicationFocus: [
-      "Pipes & Fittings",
-      "Injection Molding",
-      "Raffia / Woven Applications",
-      "Automotive Components",
-      "Consumer & Industrial Components",
-      "Compounding",
+      "Injection-Molded Articles",
+      "Chairs, Toys & Housewares",
+      "Automotive Parts",
+      "Multilayer Water Pipes",
+      "Pressure Vessels & Chemical Tanks",
     ],
-    img: ppImg,
-    menuApps: "Injection Molding, Extrusion, Raffia, Automotive",
+    img: gfppImg,
+    menuApps: "GF15 · GF20 · GF30 — Homo & Random PP",
   },
   {
     slug: "pipeline-coatings",
-    num: "03",
-    name: "Pipeline Coatings & Adhesive Resins",
+    num: "04",
+    name: "Steel Pipe Coatings",
     shortName: "Pipeline Coatings",
     chip: "3LPE / 3LPP",
     description:
-      "Material systems for the external protection of steel pipelines operating across demanding infrastructure and energy environments.",
+      "Polyolefin topcoats for 3-layer steel pipe coating — PE topcoat for −40 °C to 85 °C service and PP topcoat up to 115 °C.",
     typesLabel: "Material Focus",
-    types: ["3LPE", "3LPP", "Adhesive Resins"],
+    types: ["3LPE", "3LPP"],
     applicationFocus: [
       "Steel Pipe Coating",
       "Oil & Gas Pipelines",
-      "Water Transmission",
-      "Infrastructure Pipelines",
-      "Adhesive / Tie-Layer Systems",
-      "Multi-Layer Protection",
+      "Underground Corrosion Protection",
+      "High-Temperature Lines",
     ],
-    img: threeLpeImg,
-    menuApps: "3LPE / 3LPP, Steel Pipe Anti-Corrosion",
+    img: coatedPipeImg,
+    menuApps: "3LPE / 3LPP Topcoats for Steel Pipe",
   },
   {
-    slug: "engineering-thermoplastics",
-    num: "04",
-    name: "Engineering Thermoplastics",
-    shortName: "Engineering Thermoplastics",
-    chip: "PA / PC / PBT",
-    description:
-      "Engineering polymers developed for technical parts that demand higher mechanical, thermal or dimensional performance than standard commodity plastics.",
-    typesLabel: "Resin Types",
-    types: ["PA6", "PA66", "PC & PC Blends", "PBT"],
-    applicationFocus: [
-      "Automotive Parts",
-      "Electrical Components",
-      "Industrial Components",
-      "Reinforced Compounds",
-      "Heat-Resistant Applications",
-      "Precision Molded Parts",
-    ],
-    img: paImg,
-    menuApps: "PA, PC, PBT — Reinforced & Specialty Grades",
-  },
-  {
-    slug: "thermoplastic-elastomers",
+    slug: "masterbatches",
     num: "05",
-    name: "Thermoplastic Elastomers",
-    shortName: "TPE & TPV",
-    chip: "TPE / TPV",
+    name: "Masterbatches",
+    shortName: "Masterbatches",
+    chip: "Masterbatch",
     description:
-      "Flexible thermoplastic materials combining elastomer-like performance with thermoplastic processing efficiency.",
-    typesLabel: "Resin Types",
-    types: ["TPE", "TPV"],
-    applicationFocus: [
-      "Sealing Systems",
-      "Flexible Components",
-      "Automotive Applications",
-      "Soft-Touch Components",
-      "Hoses & Profiles",
-      "Consumer Applications",
-    ],
-    img: tpeImg,
-    menuApps: "Seals, Soft-Touch, Overmolding, TPV",
-  },
-  {
-    slug: "performance-additives",
-    num: "06",
-    name: "Masterbatches & Performance Additives",
-    shortName: "Performance Additives",
-    chip: "Performance",
-    description:
-      "Functional and aesthetic solutions designed to modify color, processing behavior, durability and end-product performance.",
-    typesLabel: "Solution Types",
-    types: ["Color", "UV", "Antioxidant", "Processing", "Anti-Static", "Functional Additives"],
-    applicationFocus: [
-      "Color Modification",
-      "UV Protection",
-      "Processing Improvement",
-      "Thermal / Oxidative Stability",
-      "Anti-Static Performance",
-      "Application-Specific Formulation",
-    ],
+      "White and P-type black colour masterbatches and filler masterbatch for PE and PP processing.",
+    typesLabel: "Masterbatch Types",
+    types: ["Colour Masterbatch", "Filler Masterbatch"],
+    applicationFocus: ["Pipe", "Film", "Sheet", "Blow & Injection Molding", "Extrusion", "Fibre"],
     img: perfImg,
-    menuApps: "Color, UV Stabilizers, Flame Retardant",
-  },
-  {
-    slug: "specialty-composites",
-    num: "07",
-    name: "Specialty & Composite Materials",
-    shortName: "Specialty & Composites",
-    chip: "Specialty",
-    description:
-      "Specialized material systems for applications requiring structural performance, reinforcement or application-specific material combinations.",
-    typesLabel: "Material Focus",
-    types: ["Composite Materials", "Reinforcement Systems", "Specialty Matrix Resins"],
-    applicationFocus: [
-      "Infrastructure",
-      "Industrial Structures",
-      "Transportation",
-      "Composite Components",
-      "Specialized Manufacturing",
-      "Performance-Driven Applications",
-    ],
-    img: specialtyImg,
-    menuApps: "Structural Polymers, Filled Compounds",
+    menuApps: "White, P-Type Black, Filler",
   },
 ];
 
@@ -185,7 +121,7 @@ export interface Product {
   name: string;
 }
 
-/** Products shown under each family on the Products page — the resin types from the product hierarchy. */
+/** Products shown under each family on the Products page — every product card on the family page. */
 export const productsByFamily: Record<string, Product[]> = Object.fromEntries(
-  Object.values(familyDetails).map((d) => [d.slug, d.resinTypes.map(({ code, name }) => ({ code, name }))]),
+  Object.values(familyDetails).map((d) => [d.slug, d.grades.map((g) => ({ code: g.code ?? g.group ?? "", name: g.title }))]),
 );

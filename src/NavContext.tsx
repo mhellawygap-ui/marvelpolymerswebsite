@@ -19,18 +19,28 @@ const PAGES: Page[] = ["home", "about", "contact", "products", "family", "indust
  *   #/            → home
  *   #/about       → about
  *   #/products    → products (All tab)
- *   #/products/filter/polyethylene → products, filtered to one family tab
- *   #/products/polyethylene → that family's detail page
+ *   #/products/filter/pe-pipe-compounds → products, filtered to one family tab
+ *   #/products/pe-pipe-compounds → that family's detail page
  *   #/industries/automotive → industries page, scrolled to that industry
  *   #/resources/guides      → resources page, scrolled to that section
- *   #/quote/polyethylene    → quote form, pre-filled with that family
+ *   #/quote/pe-pipe-compounds    → quote form, pre-filled with that family
  *   #/thanks/quote          → thank-you page for that form
  *   #industries   → home, scrolled to that section (plain in-page anchors keep working)
  */
+/** Old family slugs from before the Moharam Plast update, so shared links still land somewhere useful. */
+const OLD_SLUGS: Record<string, string> = {
+  polyethylene: "pe-pipe-compounds",
+  polypropylene: "glass-fibre-pp",
+  "specialty-composites": "glass-fibre-pp",
+  "performance-additives": "masterbatches",
+};
+
 export function parseHash(hash: string): { page: Page; anchor: string } {
   const h = hash.replace(/^#/, "");
   if (h.startsWith("/")) {
-    const [p, a = "", b = ""] = h.slice(1).split("/");
+    const [p, rawA = "", rawB = ""] = h.slice(1).split("/");
+    const a = OLD_SLUGS[rawA] ?? rawA;
+    const b = OLD_SLUGS[rawB] ?? rawB;
     if (p === "products") {
       if (a === "filter") return { page: "products", anchor: b };
       if (a && a !== "all") return { page: "family", anchor: a };

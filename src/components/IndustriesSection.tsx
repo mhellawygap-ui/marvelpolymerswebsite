@@ -1,3 +1,5 @@
+import rotoImg from "@/imports/roto-tanks.jpg";
+
 const industries = [
   {
     className: "industry industry-span2 industry-tall",
@@ -5,23 +7,7 @@ const industries = [
     alt: "Water utility piping infrastructure",
     h3: "Infrastructure, Water & Utility Piping",
     slug: "infrastructure",
-    p: "PE100 / PE80, HDPE, PP-R and performance additives.",
-  },
-  {
-    className: "industry",
-    img: "https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080",
-    alt: "Industrial manufacturing factory floor",
-    h3: "Industrial Manufacturing",
-    slug: "industrial",
-    p: "Materials for crates, drums, containers and technical parts.",
-  },
-  {
-    className: "industry",
-    img: "https://images.unsplash.com/photo-1777642328916-d96fc156f32b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080",
-    alt: "Automotive assembly line with robotic arms",
-    h3: "Automotive & Transportation",
-    slug: "automotive",
-    p: "Modified PP, engineering thermoplastics and TPE / TPV.",
+    p: "PE100 and PE80 pipe compounds for water, gas, sewer and irrigation networks.",
   },
   {
     className: "industry industry-tall",
@@ -29,15 +15,23 @@ const industries = [
     alt: "Oil and gas pipeline infrastructure",
     h3: "Oil & Gas Pipeline Infrastructure",
     slug: "oil-gas",
-    p: "3LPE, 3LPP and adhesive resin systems.",
+    p: "3LPE and 3LPP topcoats and adhesive resins for steel pipe.",
   },
   {
     className: "industry",
-    img: "https://images.unsplash.com/photo-1720414574223-9f634e6035c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080",
-    alt: "Industrial plastic containers and packaging",
-    h3: "Rotational Molding & Packaging",
-    slug: "packaging",
-    p: "UV-stabilized powders, film grades and color solutions.",
+    img: "https://images.unsplash.com/photo-1777642328916-d96fc156f32b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080",
+    alt: "Automotive assembly line with robotic arms",
+    h3: "Automotive & Transportation",
+    slug: "automotive",
+    p: "Glass-fibre reinforced PP for stiff, lightweight parts.",
+  },
+  {
+    className: "industry industry-span2",
+    img: rotoImg,
+    alt: "Rotomolded water tanks",
+    h3: "Rotomolding",
+    slug: "rotomolding",
+    p: "UV-stabilized MDPE powders and micro pellets for tanks and containers.",
   },
 ];
 

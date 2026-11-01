@@ -32,7 +32,7 @@ export default function ProductsPage() {
         <div className="container">
           <h1>Our products.</h1>
           <p>
-            Polymer materials for infrastructure, packaging, automotive and industrial applications. Pick a
+            Pipe compounds, rotomolding materials, glass-fibre PP, steel pipe coatings and masterbatches. Pick a
             family to see only its products.
           </p>
         </div>
@@ -118,10 +118,10 @@ function Shelf({
       </header>
       <ul className="pp-items">
         {items.map((p) => (
-          <li key={p.code}>
+          <li key={p.name}>
             <a className="pp-item" {...link("family", f.slug)}>
-              <span className="pp-item-code">{p.code}</span>
-              <span className="pp-item-name">{p.name}</span>
+              <span className="pp-item-code">{p.name}</span>
+              {p.code && <span className="pp-item-name">{p.code}</span>}
               <span className="pp-item-cta">View details <span className="arrow">→</span></span>
             </a>
           </li>

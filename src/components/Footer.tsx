@@ -13,10 +13,11 @@ export default function Footer() {
           </div>
           <div>
             <h4>Products</h4>
-            <a href="#/products/polyethylene">Polyethylene</a>
-            <a href="#/products/polypropylene">Polypropylene</a>
+            <a href="#/products/pe-pipe-compounds">PE100 & PE80 Pipe Compounds</a>
+            <a href="#/products/rotomolding">Rotomolding</a>
+            <a href="#/products/glass-fibre-pp">Glass-Fibre PP</a>
             <a href="#/products/pipeline-coatings">Pipeline Coatings</a>
-            <a href="#/products/engineering-thermoplastics">Engineering Thermoplastics</a>
+            <a href="#/products/masterbatches">Masterbatches</a>
           </div>
           <div>
             <h4>Explore</h4>

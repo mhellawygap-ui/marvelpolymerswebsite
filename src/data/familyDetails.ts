@@ -1,9 +1,15 @@
 /**
- * Family detail pages — content taken from "Marvel Polymers Product Hierarchy" (Aug 2026):
- * sub-categories / resin types and specialized application grades per family.
- * Resin descriptions are short general definitions; no technical values beyond those in the hierarchy.
- * Application photos: Pexels (free to use, no attribution required).
+ * Family detail pages — products manufactured by Moharam Plast, per the
+ * "Marvel vs Moharam Plast" comparison sheet and Mr. Naji's notes (Nov 2026).
+ * Structure: family → resin / material types → application grades (product cards).
+ * Supplied photos live in src/imports; other photos: Pexels (free to use).
  */
+import pipeBlackImg from "@/imports/pipe-black.jpg";
+import pipeOrangeImg from "@/imports/pipe-orange.jpg";
+import rotoImg from "@/imports/roto-tanks.jpg";
+import gfppImg from "@/imports/gfpp.jpg";
+import coatedPipeImg from "@/imports/coated-pipe.jpg";
+import perfImg from "@/imports/Performance.png";
 
 const px = (id: number) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=900`;
@@ -16,6 +22,8 @@ export interface ResinType {
 
 export interface Grade {
   title: string;
+  /** Grade code shown on the card. */
+  code?: string;
   /** Focus / applications, as listed in the hierarchy. */
   focus: string[];
   /** Two-line brief shown on the card (SEO-friendly text). */
@@ -37,123 +45,94 @@ export interface FamilyDetail {
 }
 
 export const familyDetails: Record<string, FamilyDetail> = {
-  polyethylene: {
-    slug: "polyethylene",
+  "pe-pipe-compounds": {
+    slug: "pe-pipe-compounds",
+    heroImg: pipeOrangeImg,
     intro:
-      "The most widely used polymer family — from pressure pipes under the street to the drums, crates and films that move goods. Marvel supplies HDPE, MDPE / LLDPE and LDPE grades matched to how you process and what your product must do.",
+      "Our main product line: ready-to-use PE100 and PE80 pipe compounds for gas, water, plumbing, irrigation, sewer and fire-suppression networks. They are built for UV resistance, slow-crack-growth resistance and long-term hydrostatic performance, so pipes keep their pressure rating for decades.",
     resinTypes: [
-      { code: "HDPE", name: "High-Density Polyethylene", desc: "Rigid and tough with high strength for its weight — the base for pressure pipes, blow-molded containers and crates." },
-      { code: "MDPE / LLDPE", name: "Medium-Density / Linear Low-Density PE", desc: "A balance of stiffness and flexibility with good toughness — used in pipes, rotomolded tanks and strong, stretchable films." },
-      { code: "LDPE", name: "Low-Density Polyethylene", desc: "Soft, flexible and easy to process — the classic choice for film and flexible packaging." },
+      { code: "HDPE — PE100", name: "PE100 Pipe Compounds", desc: "Bimodal, high-molecular-weight hexene copolymer with an MRS of 10 MPa — for high-pressure water and gas networks." },
+      { code: "MDPE — PE80", name: "PE80 Pipe Compounds", desc: "Hexene medium-density PE with an MRS of 8 MPa — flexible and coilable, for distribution and service lines." },
     ],
-    gradesTitle: "Application grades",
+    gradesTitle: "Pipe compounds",
     grades: [
-      { title: "PE100 & PE80 Pipe Compounds", desc: "Pressure pipe compounds for water, gas and sewage infrastructure networks.", focus: ["Water", "Gas", "Sewage Infrastructure"], process: "Pipe extrusion", img: px(9389356) },
-      { title: "Blow Molding Grades", desc: "HDPE grades for drums, industrial containers and chemical bottles.", focus: ["Drums", "Containers", "Chemical Bottles"], process: "Blow molding", img: px(12845179) },
-      { title: "Injection Molding Grades", desc: "Grades for crates, caps and closures that need toughness and fast cycle times.", focus: ["Crates", "Caps", "Closures"], process: "Injection molding", img: px(24517725) },
-      { title: "Rotomolding Powders", desc: "UV8 and UV20 stabilized powders for tanks and large hollow parts used outdoors.", focus: ["UV8 / UV20 Stabilized Resins"], process: "Rotational molding", img: px(17854867) },
-      { title: "Film Grades", desc: "Film grades for heavy-duty shipping sacks and stretch film.", focus: ["Heavy-Duty Shipping Sacks", "Stretch Film"], process: "Film extrusion", img: px(29817952) },
-      { title: "General Extrusion", desc: "Extrusion grades for flexible packaging films.", focus: ["Flexible Packaging Film Grades"], process: "Extrusion", img: px(7414936) },
+      { group: "PE100 — HDPE", title: "PE100 Black", code: "ETHYPIPE® EEB-5906-AAH", desc: "Black PE100 compound for pressure pipes: drinking water, natural gas, pressure sewerage, relining, sea outfall and industrial lines.", focus: ["Drinking water", "Natural gas", "Pressure sewerage", "Relining", "Sea outfall", "Industrial"], process: "Pipe extrusion", img: pipeBlackImg },
+      { group: "PE100 — HDPE", title: "PE100 Orange", code: "ETHYPIPE® HDPE MP5020-100", desc: "Orange PE100 compound for natural gas distribution pipes, coloured for clear identification in the ground.", focus: ["Gas pipes"], process: "Pipe extrusion", img: pipeOrangeImg },
+      { group: "PE100 — HDPE", title: "PE100 Blue", code: "ETHYPIPE® HDPE MP5022-100", desc: "Blue PE100 compound for drinking water and pressure water pipes.", focus: ["Water pipes"], process: "Pipe extrusion", img: pipeBlackImg },
+      { group: "PE80 — MDPE", title: "PE80 Black", code: "ETHYPIPE® EEB-4916-AAH", desc: "Black PE80 compound for pressure pipes: drinking water, natural gas, pressure sewerage, relining, sea outfall and industrial lines.", focus: ["Drinking water", "Natural gas", "Pressure sewerage", "Relining", "Sea outfall", "Industrial"], process: "Pipe extrusion", img: pipeBlackImg },
+      { group: "PE80 — MDPE", title: "PE80 Yellow", code: "ETHYPIPE® MDPE MP4010-80", desc: "Yellow PE80 compound for gas pipes — flexible and coilable for distribution and service lines.", focus: ["Gas pipes"], process: "Pipe extrusion", img: px(9389356) },
+      { group: "PE80 — MDPE", title: "PE80 Blue", code: "ETHYPIPE® MDPE MP4011-80", desc: "Blue PE80 compound for water distribution and service pipes.", focus: ["Water pipes"], process: "Pipe extrusion", img: pipeBlackImg },
     ],
   },
 
-  polypropylene: {
-    slug: "polypropylene",
+  rotomolding: {
+    slug: "rotomolding",
     intro:
-      "Polypropylene brings stiffness, chemical resistance and efficient processing to rigid and structural parts. Marvel supplies homopolymer, block and random copolymers, plus modified compounds tuned for demanding parts.",
+      "MDPE rotomolding materials for tanks, containers and large hollow parts used outdoors. Choose a powder or micro pellets, in natural, black, white or a custom colour — all UV-stabilized.",
     resinTypes: [
-      { code: "PP-H", name: "PP Homopolymer", desc: "Stiff and easy to process — widely used for injection molding, raffia tapes and fibre." },
-      { code: "PP-B", name: "PP Block Copolymer", desc: "Improved impact strength, including at low temperatures — for crates, battery cases and automotive parts." },
-      { code: "PP-R", name: "PP Random Copolymer", desc: "The material of choice for hot and cold water plumbing pipes and fittings." },
-      { code: "Modified PP", name: "Modified PP Compounds", desc: "Mineral-filled, glass-fibre reinforced and impact-modified grades for structural and automotive parts." },
+      { code: "MDPE Powders", name: "Rotomolding Powders", desc: "UV-stabilized MDPE powders made from C4 / C6 prime resins, ground for even melting in the mould." },
+      { code: "Micro Pellets", name: "Micro Pellets", desc: "Small, uniform pellets with good dispersion, high bulk density and good flow." },
     ],
-    gradesTitle: "Application grades",
+    gradesTitle: "Rotomolding products",
     grades: [
-      { group: "Base resin grades", title: "High MFI Injection & Raffia", desc: "High-flow PP for woven bags, raffia tapes and fibre applications.", focus: ["Woven Bags", "Fiber Application"], process: "Injection · Raffia", img: px(35972270) },
-      { group: "Base resin grades", title: "High Impact Industrial", desc: "Impact copolymer grades for battery cases, heavy crates and automotive parts.", focus: ["Battery Cases", "Heavy Crates", "Automotive"], process: "Injection molding", img: px(37177070) },
-      { group: "Base resin grades", title: "PP-R Plumbing Extrusion", desc: "Random copolymer grades for hot and cold water distribution pipes.", focus: ["Hot & Cold Water Distribution Pipes"], process: "Pipe extrusion", img: px(29248902) },
-      { group: "Modified compounds", title: "Mineral-Filled Compounds", desc: "Talc and calcite reinforced PP compounds for added stiffness.", focus: ["Talc / Calcite Reinforced Grades"], process: "Compounding", img: px(34286024) },
-      { group: "Modified compounds", title: "Glass Fiber Reinforced (GFR PP)", desc: "Glass-fibre reinforced PP for structural industrial parts.", focus: ["Structural Industrial Parts"], process: "Compounding", img: px(9242910) },
-      { group: "Modified compounds", title: "Impact-Modified Compounds", desc: "Impact-modified PP compounds for automotive exterior and interior trim.", focus: ["Automotive Exterior Trim", "Interior Trim"], process: "Compounding", img: px(241188) },
+      { group: "Powders & pellets", title: "MDPE Roto Powder MP3450U", code: "ETHYPOWDER MDPE MP3450U", desc: "UV-stabilized MDPE rotomolding powder from C4 / C6 prime resins, for water tanks and large hollow parts.", focus: ["Tanks", "Containers"], process: "Rotational molding", img: rotoImg },
+      { group: "Powders & pellets", title: "MDPE Roto Powder MP3840U", code: "ETHYPOWDER MDPE MP3840U", desc: "UV-stabilized MDPE rotomolding powder for tanks, containers and bins.", focus: ["Tanks", "Bins"], process: "Rotational molding", img: px(17854867) },
+      { group: "Powders & pellets", title: "Micro Pellets", desc: "MDPE micro pellets with good dispersion, high bulk density and good flow for consistent wall thickness.", focus: ["Tanks", "Containers"], process: "Rotational molding", img: perfImg },
+      { group: "Colour grades", title: "Black Roto Grade", desc: "Black UV-stabilized rotomolding grade, based on MDPE MP3450U / MP3840U.", focus: ["Outdoor tanks"], process: "Rotational molding", img: rotoImg },
+      { group: "Colour grades", title: "White Roto Grade", desc: "White UV-stabilized rotomolding grade, based on MDPE MP3450U / MP3840U.", focus: ["Water tanks"], process: "Rotational molding", img: rotoImg },
+      { group: "Colour grades", title: "Coloured Roto Grades", desc: "Custom-coloured UV-stabilized rotomolding grades, based on MDPE MP3450U / MP3840U.", focus: ["Branded tanks", "Containers"], process: "Rotational molding", img: rotoImg },
+    ],
+  },
+
+  "glass-fibre-pp": {
+    slug: "glass-fibre-pp",
+    intro:
+      "Glass-fibre reinforced polypropylene — glass fibre chemically coupled to the PP matrix for high stiffness and strength. Used for injection-molded articles, chairs, toys, housewares, automotive parts, pipes, pressure vessels and chemical storage tanks.",
+    resinTypes: [
+      { code: "Homopolymer", name: "GF-Reinforced PP Homopolymer", desc: "Highest stiffness — for injection-molded structural parts, furniture, housewares and automotive components." },
+      { code: "Random Copolymer", name: "GF-Reinforced PP Random Copolymer", desc: "Glass-fibre reinforced random copolymer for multilayer water pipes and fittings." },
+    ],
+    gradesTitle: "Glass-fibre PP grades",
+    grades: [
+      { group: "Homopolymer", title: "PP GF15", code: "PP MP1015-GF15", desc: "Homopolymer PP with 15% glass fibre for stiff injection-molded parts and housewares.", focus: ["Injection molding"], process: "Injection molding", img: px(9242910) },
+      { group: "Homopolymer", title: "PP GF20", code: "PP MP1020-GF20", desc: "Homopolymer PP with 20% glass fibre for chairs, toys and automotive parts.", focus: ["Furniture", "Automotive"], process: "Injection molding", img: px(37177070) },
+      { group: "Homopolymer", title: "PP GF30", code: "PP MP1030-GF30", desc: "Homopolymer PP with 30% glass fibre for high-stiffness structural parts, pressure vessels and chemical tanks.", focus: ["Structural parts", "Tanks"], process: "Injection molding", img: px(241188) },
+      { group: "Random copolymer", title: "PP-R GF20", code: "PP MP1040-GF20", desc: "Random copolymer PP with 20% glass fibre for multilayer water pipes.", focus: ["Multilayer pipes"], process: "Pipe extrusion", img: gfppImg },
+      { group: "Random copolymer", title: "PP-R GF15", code: "PP MP9030-GF15", desc: "Random copolymer PP with 15% glass fibre for multilayer water pipes and fittings.", focus: ["Multilayer pipes"], process: "Pipe extrusion", img: gfppImg },
     ],
   },
 
   "pipeline-coatings": {
     slug: "pipeline-coatings",
+    heroImg: coatedPipeImg,
     intro:
-      "Steel pipe coating systems that protect pipelines against corrosion and mechanical damage — for oil & gas transmission lines and high-temperature service.",
+      "Polyolefin topcoats for 3-layer steel pipe coating — protecting oil & gas and underground pipelines against corrosion and mechanical damage, even under severe laying conditions.",
     resinTypes: [
-      { code: "3LPE", name: "3-Layer Polyethylene System", desc: "PE topcoat and adhesive resin over an epoxy primer — the standard for oil & gas transmission pipelines." },
-      { code: "3LPP", name: "3-Layer Polypropylene System", desc: "PP coating compounds for pipelines that run at higher operating temperatures." },
-      { code: "Adhesive", name: "Adhesive Resins", desc: "The tie-layer that bonds the epoxy primer to the polyolefin topcoat." },
+      { code: "3LPE", name: "PE Topcoat", desc: "HDPE topcoat for high running speeds and thin layers, from −40 °C to 85 °C with a grafted adhesive." },
+      { code: "3LPP", name: "PP Topcoat", desc: "PP topcoat for pipelines that run at higher temperatures, up to 115 °C." },
     ],
-    gradesTitle: "Application grades",
+    gradesTitle: "Topcoat grades",
     visual: "coating-layers",
     grades: [
-      { title: "3LPE Topcoat & Adhesive Resins", desc: "PE topcoat and adhesive resins for oil and gas transmission pipelines.", focus: ["Oil & Gas Transmission Pipelines"], process: "Multi-layer coating", img: px(37793901) },
-      { title: "3LPP Coating Compounds", desc: "PP coating compounds for pipelines operating at high temperatures.", focus: ["High-Temperature Pipeline Applications"], process: "Multi-layer coating", img: px(36825977) },
+      { title: "3LPE Topcoat — Black", code: "MP COAT 5205", desc: "Black HDPE topcoat for oil & gas and underground steel pipelines, −40 °C to 85 °C.", focus: ["Oil & gas", "Underground lines"], process: "Multi-layer coating", img: coatedPipeImg },
+      { title: "3LPE Topcoat — Yellow", code: "MP-COAT 5040", desc: "Yellow HDPE topcoat for steel pipe corrosion protection, −40 °C to 85 °C.", focus: ["Steel pipe coating"], process: "Multi-layer coating", img: px(37793901) },
+      { title: "3LPP Topcoat — White", code: "PP MP COAT 9010", desc: "White PP topcoat for high-temperature pipelines, up to 115 °C.", focus: ["High-temperature lines"], process: "Multi-layer coating", img: px(36825977) },
     ],
   },
 
-  "engineering-thermoplastics": {
-    slug: "engineering-thermoplastics",
+  masterbatches: {
+    slug: "masterbatches",
     intro:
-      "Engineering polymers for technical parts that need more strength, heat resistance or dimensional stability than commodity plastics can deliver.",
+      "Colour and filler concentrates added at the machine to the base resin — for pipe, film, sheet, molding, extrusion and fibre.",
     resinTypes: [
-      { code: "PA6 / PA66", name: "Polyamides", desc: "Tough, heat- and wear-resistant — available unfilled, glass-fibre reinforced or flame retardant." },
-      { code: "PC", name: "Polycarbonate & Blends", desc: "Impact-resistant and dimensionally stable, as pure PC or PC/ABS alloys." },
-      { code: "PBT", name: "PBT & Specialty Resins", desc: "Dimensionally stable engineering polyester for technical and electrical parts." },
+      { code: "Colour", name: "Colour Masterbatch", desc: "White and P-type black concentrates with excellent dispersion, UV stability and heat resistance." },
+      { code: "Filler", name: "Filler Masterbatch", desc: "Mineral filler concentrate that lowers material cost and improves stiffness." },
     ],
-    gradesTitle: "Application grades",
+    gradesTitle: "Masterbatch grades",
     grades: [
-      { title: "Reinforced & Modified PA", desc: "PA6 and PA66 grades — unfilled, glass-fibre reinforced (15%–50%) or flame retardant.", focus: ["Unfilled", "Glass Fiber 15%–50%", "Flame Retardant"], process: "Injection molding", img: px(1476320) },
-      { title: "PC Grades & Alloys", desc: "Pure PC and PC/ABS alloys for automotive and electrical parts.", focus: ["Pure PC", "PC/ABS Alloys", "Automotive & Electrical"], process: "Injection molding", img: px(18894298) },
-      { title: "PBT Engineering Resins", desc: "PBT resins for technical components and electrical housings.", focus: ["Technical Components", "Electrical Housings"], process: "Injection molding", img: px(29032822) },
-    ],
-  },
-
-  "thermoplastic-elastomers": {
-    slug: "thermoplastic-elastomers",
-    intro:
-      "Thermoplastic elastomers combine rubber-like flexibility with the easy processing of a thermoplastic — ideal for soft-touch and sealing parts.",
-    resinTypes: [
-      { code: "TPE", name: "Thermoplastic Elastomer", desc: "Soft, flexible compounds for grips, soft-touch surfaces and overmolding." },
-      { code: "TPV", name: "Thermoplastic Vulcanizate", desc: "A vulcanized rubber phase in a thermoplastic matrix — suited to seals and weatherstripping." },
-    ],
-    gradesTitle: "Soft-Touch & Sealing Solutions",
-    grades: [
-      { title: "Grips", desc: "Soft-touch compounds for handles, grips and overmolded parts.", focus: ["Soft-touch handles", "Overmolded grips"], process: "Injection · Overmolding", img: px(12642937) },
-      { title: "Gaskets", desc: "Flexible compounds for sealing gaskets.", focus: ["Sealing gaskets"], process: "Injection molding", img: px(7937299) },
-      { title: "Sealing Profiles", desc: "Extrusion compounds for window, door and sealing profiles.", focus: ["Window & door profiles"], process: "Profile extrusion", img: px(5768284) },
-      { title: "Weatherstripping", desc: "TPV compounds for automotive door and window weatherstripping.", focus: ["Automotive door & window seals"], process: "Profile extrusion", img: px(17260531) },
-    ],
-  },
-
-  "performance-additives": {
-    slug: "performance-additives",
-    intro:
-      "Concentrates that color a polymer or change how it processes and performs — added at the machine to the base resin.",
-    resinTypes: [
-      { code: "Color", name: "Color Masterbatches", desc: "Pipe black, white and custom-matched colors." },
-      { code: "Additive", name: "Additive Masterbatches", desc: "UV stabilizers, antioxidants, processing aids and anti-static." },
-    ],
-    gradesTitle: "Application grades",
-    visual: "masterbatch",
-    grades: [],
-  },
-
-  "specialty-composites": {
-    slug: "specialty-composites",
-    heroImg: px(33708756),
-    intro:
-      "Structural polymers and specialty matrix resins for industrial composite parts and civil-engineering applications.",
-    resinTypes: [
-      { code: "Matrix Resins", name: "Specialty Matrix Resins", desc: "Resin systems that bind fibre reinforcement into strong, lightweight composite structures." },
-    ],
-    gradesTitle: "Application grades",
-    grades: [
-      { title: "Industrial Composites", desc: "Specialty matrix resins for industrial composite components.", focus: ["Composite components", "Structural parts"], process: "Composite molding", img: px(33708756) },
-      { title: "Civil Engineering Applications", desc: "Matrix resins for composite structures in civil engineering.", focus: ["Infrastructure", "Structures"], process: "Composite molding", img: px(38933029) },
+      { group: "Colour masterbatch", title: "White PE Masterbatch", code: "MBU2010-T40", desc: "White masterbatch with excellent dispersibility, colour fastness, UV stability, high opacity and heat resistance.", focus: ["Film", "Molding"], process: "All processes", img: px(7414936) },
+      { group: "Colour masterbatch", title: "P-Type Black Masterbatch", code: "MB1105-C40", desc: "High pigment concentration for deep blackness, with excellent dispersion and UV and heat resistance. For blowing, injection, extrusion, fibre, film, pipe and sheet.", focus: ["Pipe", "Film", "Sheet"], process: "All processes", img: perfImg },
+      { group: "Filler masterbatch", title: "Filler Masterbatch", code: "MP 1903-C80", desc: "Filler masterbatch to reduce material cost and improve stiffness in PE and PP products.", focus: ["Film", "Molding"], process: "All processes", img: px(34286024) },
     ],
   },
 };

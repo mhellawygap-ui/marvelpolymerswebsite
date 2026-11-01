@@ -5,7 +5,6 @@ import { familyDetails } from "@/data/familyDetails";
 import { useFormSubmit } from "@/lib/useFormSubmit";
 
 const STEPS = ["Material", "Quantity & delivery", "Your details"];
-const MB_APPS = ["Pipe Black", "White (TiO2)", "Custom Colors", "UV Stabilizers", "Antioxidants", "Processing Aids (PPA)", "Anti-Static"];
 
 export default function QuotePage() {
   const { anchor, navigate } = useNav();
@@ -24,7 +23,7 @@ export default function QuotePage() {
 
   const family = families.find((f) => f.slug === fam);
   const detail = fam ? familyDetails[fam] : undefined;
-  const apps = detail ? (detail.visual === "masterbatch" ? MB_APPS : detail.grades.map((g) => g.title)) : [];
+  const apps = detail ? detail.grades.map((g) => (g.code ? `${g.title} (${g.code})` : g.title)) : [];
 
   const link = (p: Page, a = "") => ({
     href: hashFor(p, a),

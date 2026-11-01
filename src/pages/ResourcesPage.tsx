@@ -10,7 +10,7 @@ const GUIDES: { tag: string; title: string; summary: string; body: string[]; fam
     tag: "Pipes",
     title: "PE100 vs PE80: which pipe grade?",
     summary: "What the numbers mean and when each one is used.",
-    family: "polyethylene",
+    family: "pe-pipe-compounds",
     body: [
       "The number is the pipe resin's minimum required strength (MRS): 8 MPa for PE80 and 10 MPa for PE100, measured at 20 °C over a 50-year design life.",
       "The higher MRS lets a PE100 pipe carry the same pressure with a thinner wall, or a higher pressure at the same wall thickness. That makes PE100 the usual choice for pressure water and gas networks, while PE80 is still common for smaller diameters and lower-pressure lines.",
@@ -18,14 +18,14 @@ const GUIDES: { tag: string; title: string; summary: string; body: string[]; fam
     ],
   },
   {
-    tag: "Polypropylene",
-    title: "PP-H, PP-B or PP-R?",
-    summary: "Three kinds of polypropylene and what each one is good at.",
-    family: "polypropylene",
+    tag: "Glass-fibre PP",
+    title: "Homopolymer or random copolymer GF-PP?",
+    summary: "Two kinds of glass-fibre PP and where each one is used.",
+    family: "glass-fibre-pp",
     body: [
-      "PP-H (homopolymer) is made from propylene only. It is the stiffest of the three and processes easily — used for injection molding, raffia tapes and fibre — but it is less tough at low temperatures.",
-      "PP-B (block or impact copolymer) contains a rubbery ethylene-propylene phase that absorbs impact, including in the cold. It suits crates, battery cases and automotive parts.",
-      "PP-R (random copolymer) has ethylene spread randomly along the chain, giving flexibility and good long-term performance with hot water — which is why it is used for plumbing pipes and fittings.",
+      "Glass-fibre reinforced PP has short glass fibres chemically coupled to the polypropylene, which makes it much stiffer and stronger than unfilled PP. The number after GF is the glass content — GF15 is 15%, GF30 is 30%.",
+      "Homopolymer grades give the highest stiffness and are used for injection-molded structural parts, furniture, housewares, automotive parts and tanks.",
+      "Random copolymer grades are used in multilayer water pipes, where the reinforced layer reduces thermal expansion of the pipe.",
     ],
   },
   {
@@ -35,17 +35,17 @@ const GUIDES: { tag: string; title: string; summary: string; body: string[]; fam
     family: "pipeline-coatings",
     body: [
       "Both systems use three layers on the steel pipe: a fusion-bonded epoxy primer, an adhesive tie-layer and a thick polyolefin topcoat.",
-      "3LPE uses a polyethylene topcoat and is the standard choice for most oil and gas transmission lines. 3LPP uses a polypropylene topcoat for lines that run hotter and need extra mechanical and abrasion resistance.",
+      "3LPE uses a polyethylene topcoat and is the standard choice for most oil and gas transmission lines — our PE topcoats cover −40 °C to 85 °C. 3LPP uses a polypropylene topcoat for lines that run hotter, up to 115 °C, and need extra mechanical resistance.",
       "The allowed operating temperature depends on the exact system and standard (such as ISO 21809-1), so always check it against the project specification.",
     ],
   },
   {
     tag: "Masterbatch",
     title: "Masterbatch basics",
-    summary: "How color and additive concentrates are used.",
-    family: "performance-additives",
+    summary: "How colour and filler concentrates are used.",
+    family: "masterbatches",
     body: [
-      "A masterbatch is a concentrate of pigment or additive in a carrier resin. It is mixed with the base polymer at the machine, usually at a few percent, so the whole batch doesn't have to be compounded.",
+      "A masterbatch is a concentrate of pigment or filler in a carrier resin. It is mixed with the base polymer at the machine, usually at a few percent, so the whole batch doesn't have to be compounded.",
       "The carrier should be compatible with the base polymer — a PE-based masterbatch for PE products, for example.",
       "Pipe black is a special case: pipe standards set the carbon black content of the finished pipe (typically 2.0–2.5%), so the masterbatch loading and dosing are chosen to hit that range.",
     ],
@@ -124,12 +124,18 @@ export default function ResourcesPage() {
               </label>
               <label className="fp-field">
                 <span>{detail ? families.find((f) => f.slug === fam)?.typesLabel.replace(/Types$/, "Type") : "Type"}</span>
-                <select name="resin_type" disabled={!detail} defaultValue="">
+                <select name="resin_type" disabled={!detail} defaultValue="" key={fam}>
                   <option value="">{detail ? "Any / not sure" : "Choose a family first"}</option>
                   {detail?.resinTypes.map((r) => <option key={r.code} value={r.code}>{r.code} — {r.name}</option>)}
                 </select>
               </label>
-              <label className="fp-field full"><span>Grade name (if known)</span><input name="grade" placeholder="e.g. the grade on your current TDS" /></label>
+              <label className="fp-field full">
+                <span>Grade</span>
+                <select name="grade" disabled={!detail} defaultValue="" key={fam}>
+                  <option value="">{detail ? "Any / not sure" : "Choose a family first"}</option>
+                  {detail?.grades.map((g) => <option key={g.title} value={g.code ?? g.title}>{g.title}{g.code ? ` — ${g.code}` : ""}</option>)}
+                </select>
+              </label>
               <div className="fp-field full">
                 <span>Documents *</span>
                 <div className="res-checks">

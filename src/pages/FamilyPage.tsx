@@ -30,7 +30,7 @@ export default function FamilyPage() {
 
   const toQuote = () => document.getElementById("quote")?.scrollIntoView({ behavior: "smooth", block: "start" });
   const groups = Array.from(new Set(detail.grades.map((g) => g.group ?? "")));
-  const gradeCount = detail.visual === "masterbatch" ? 7 : detail.grades.length;
+  const gradeCount = detail.grades.length;
 
   return (
     <main className="fp">
@@ -56,7 +56,7 @@ export default function FamilyPage() {
             <img src={detail.heroImg ?? family.img} alt={family.name} />
             <div className="fp-stats">
               <div><strong>{detail.resinTypes.length}</strong><span>{family.typesLabel}</span></div>
-              <div><strong>{gradeCount}</strong><span>Application grades</span></div>
+              <div><strong>{gradeCount}</strong><span>Products</span></div>
               <div><strong>TDS</strong><span>On request</span></div>
             </div>
           </div>
@@ -92,10 +92,7 @@ export default function FamilyPage() {
             <h2>{detail.gradesTitle}.</h2>
           </div>
 
-          {detail.visual === "masterbatch" ? (
-            <Masterbatch />
-          ) : (
-            groups.map((g) => (
+          {groups.map((g) => (
               <div key={g || "all"} className="fp-group">
                 {g && <h3 className="fp-group-title">{g}</h3>}
                 <div className={`fp-grades n${detail.grades.filter((x) => (x.group ?? "") === g).length}`}>
@@ -104,14 +101,13 @@ export default function FamilyPage() {
                   ))}
                 </div>
               </div>
-            ))
-          )}
+            ))}
         </div>
       </section>
 
       {/* 5 · Enquiry — end of the journey */}
       <QuoteSection familyName={family.name} resinTypes={detail.resinTypes.map((r) => r.code)}
-        applications={detail.visual === "masterbatch" ? MB_OPTIONS : detail.grades.map((g) => g.title)} />
+        applications={detail.grades.map((g) => (g.code ? `${g.title} (${g.code})` : g.title))} />
     </main>
   );
 }
@@ -123,6 +119,7 @@ function GradeCard({ grade, onQuote }: { grade: Grade; onQuote: () => void }) {
         <img src={grade.img} alt={grade.title} loading="lazy" />
       </div>
       <div className="fp-grade-body">
+        {grade.code && <span className="fp-grade-code">{grade.code}</span>}
         <h3>{grade.title}</h3>
         <p className="fp-grade-desc">{grade.desc}</p>
         <button className="fp-grade-cta" onClick={onQuote}>Request this grade <span className="arrow">→</span></button>
@@ -135,7 +132,7 @@ function GradeCard({ grade, onQuote }: { grade: Grade; onQuote: () => void }) {
 function CoatingLayers() {
   const layers = [
     { n: "3", name: "Polyolefin topcoat", note: "PE (3LPE) or PP (3LPP) — mechanical protection", marvel: true, cls: "l3" },
-    { n: "2", name: "Adhesive resin", note: "Tie-layer that bonds primer and topcoat", marvel: true, cls: "l2" },
+    { n: "2", name: "Adhesive resin", note: "Tie-layer that bonds primer and topcoat", marvel: false, cls: "l2" },
     { n: "1", name: "Epoxy primer (FBE)", note: "Corrosion barrier on the blasted steel", marvel: false, cls: "l1" },
   ];
   return (
@@ -144,8 +141,8 @@ function CoatingLayers() {
         <div>
           <h2>Three layers, one protection system.</h2>
           <p className="fp-lead">
-            A 3-layer coating is applied over the steel pipe in sequence. Marvel supplies the adhesive resin and the
-            polyolefin topcoat.
+            A 3-layer coating is applied over the steel pipe in sequence. Marvel supplies the polyolefin topcoat —
+            PE for 3LPE or PP for 3LPP.
           </p>
         </div>
         <div className="fp-layers" aria-label="Coating layer structure">
@@ -168,55 +165,6 @@ function CoatingLayers() {
         </div>
       </div>
     </section>
-  );
-}
-
-/* ── Masterbatches: color swatches + additive functions ───────────── */
-const MB_OPTIONS = ["Pipe Black", "White (TiO2)", "Custom Colors", "UV Stabilizers", "Antioxidants", "Processing Aids (PPA)", "Anti-Static"];
-
-function Masterbatch() {
-  const colors = [
-    { name: "Pipe Black", note: "Carbon black 20–50%", cls: "sw-black" },
-    { name: "White", note: "TiO2", cls: "sw-white" },
-    { name: "Custom Colors", note: "Matched to your target", cls: "sw-custom" },
-  ];
-  const additives = [
-    { name: "UV Stabilizers", note: "Protect parts exposed to sunlight", icon: "M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" },
-    { name: "Antioxidants", note: "Resist heat and oxidation during processing and use", icon: "M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" },
-    { name: "Processing Aids (PPA)", note: "Smoother, more efficient extrusion", icon: "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2V21a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 3 15H3a2 2 0 0 1 0-4h.1a1.7 1.7 0 0 0 1.2-2.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 9 4.6V3a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0 1.2 2.9H21a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" },
-    { name: "Anti-Static", note: "Reduce dust pick-up and static build-up", icon: "M13 2L4 14h7l-1 8 9-12h-7l1-8z" },
-  ];
-  return (
-    <div className="fp-mb">
-      <div className="fp-mb-col">
-        <h3 className="fp-group-title">Color Formulations</h3>
-        <div className="fp-swatches">
-          {colors.map((c) => (
-            <div key={c.name} className="fp-swatch">
-              <span className={`sw ${c.cls}`} aria-hidden="true" />
-              <strong>{c.name}</strong>
-              <small>{c.note}</small>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="fp-mb-col">
-        <h3 className="fp-group-title">Performance Additives</h3>
-        <div className="fp-additives">
-          {additives.map((a) => (
-            <div key={a.name} className="fp-additive">
-              <span className="fp-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={a.icon} /></svg>
-              </span>
-              <div>
-                <strong>{a.name}</strong>
-                <small>{a.note}</small>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
   );
 }
 
